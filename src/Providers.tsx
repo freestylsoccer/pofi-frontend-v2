@@ -1,6 +1,6 @@
 import React from 'react'
-import { ModalProvider, light, dark } from '@pancakeswap/uikit'
 import { Web3ReactProvider } from '@web3-react/core'
+// import { ModalProvider, light, dark } from '@pancakeswap/uikit'
 import { HelmetProvider } from 'react-helmet-async'
 import { Provider } from 'react-redux'
 import { ThemeProvider } from 'styled-components'
@@ -9,6 +9,7 @@ import { getLibrary } from 'utils/web3React'
 import { LanguageProvider } from 'contexts/Localization'
 import { RefreshContextProvider } from 'contexts/RefreshContext'
 import { ToastsProvider } from 'contexts/ToastsContext'
+import { ModalProvider, light, dark } from 'uikit'
 import store from 'state'
 
 const ThemeProviderWrapper = (props) => {

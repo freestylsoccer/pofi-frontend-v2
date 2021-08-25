@@ -1,8 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
-import { Flex, Skeleton, UserMenuItem } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import history from 'routerHistory'
+import { Flex, Skeleton, UserMenuItem } from 'uikit'
 
 interface ProfileUserMenuItemProps {
   isLoading: boolean

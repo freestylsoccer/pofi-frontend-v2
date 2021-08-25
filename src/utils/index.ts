@@ -5,9 +5,10 @@ import { JsonRpcSigner, Web3Provider } from '@ethersproject/providers'
 import { BigNumber } from '@ethersproject/bignumber'
 import { abi as IUniswapV2Router02ABI } from '@uniswap/v2-periphery/build/IUniswapV2Router02.json'
 import { ChainId, JSBI, Percent, Token, CurrencyAmount, Currency, ETHER } from '@pancakeswap/sdk'
-import { ROUTER_ADDRESS } from '../config/constants'
+import { ROUTER_ADDRESS, LENDING_POOL_ADDRESS } from '../config/constants'
 import { BASE_BSC_SCAN_URLS } from '../config'
 import { TokenAddressMap } from '../state/lists/hooks'
+import { abi as LendingPoolABI } from '../config/abi/LendingPool.json'
 
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
@@ -97,6 +98,9 @@ export function getRouterContract(_: number, library: Web3Provider, account?: st
 
 export function escapeRegExp(string: string): string {
   return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') // $& means the whole matched string
+}
+export function getRouterContractv2(_: number, library: Web3Provider, account?: string): Contract {
+  return getContract(LENDING_POOL_ADDRESS, LendingPoolABI, library, account)
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {

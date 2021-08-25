@@ -1918,6 +1918,24 @@ const tokens = {
     decimals: 18,
     projectLink: 'https://seedify.fund/ ',
   },
+  usdt2: {
+    symbol: 'USDT',
+    address: {
+      56: '',
+      97: '0x080De04372D5f1E317d492645b923f6286C7eC86',
+    },
+    decimals: 6,
+    projectLink: 'http://localhost:3000/',
+  },
+  ausdt: {
+    symbol: 'aUSDT',
+    address: {
+      56: '',
+      97: '0xA95B3C688B55534bEcDBf62aebA21A0FC6F23262',
+    },
+    decimals: 6,
+    projectLink: 'http://localhost:3000/',
+  },
 }
 
 export default tokens

@@ -7,6 +7,8 @@ import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
 import App from './App'
 import Providers from './Providers'
+import './bootstrap.css'
+import './custom.css'
 
 function Updaters() {
   return (

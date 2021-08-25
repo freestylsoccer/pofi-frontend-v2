@@ -1,4 +1,8 @@
 import React, { useState } from 'react'
+import BigNumber from 'bignumber.js'
+import { useTranslation } from 'contexts/Localization'
+import styled from 'styled-components'
+import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
 import {
   ButtonMenu,
   ButtonMenuItem,
@@ -10,11 +14,7 @@ import {
   ModalContainer,
   ModalHeader as UIKitModalHeader,
   ModalTitle,
-} from '@pancakeswap/uikit'
-import BigNumber from 'bignumber.js'
-import { useTranslation } from 'contexts/Localization'
-import styled from 'styled-components'
-import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
+} from 'uikit'
 import WalletInfo from './WalletInfo'
 import WalletTransactions from './WalletTransactions'
 

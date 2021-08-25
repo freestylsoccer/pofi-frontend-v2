@@ -1,6 +1,6 @@
 import React from 'react'
-import { Flex, UserMenuItem, WarningIcon } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
+import { Flex, UserMenuItem, WarningIcon } from 'uikit'
 
 interface WalletUserMenuItemProps {
   hasLowBnbBalance: boolean

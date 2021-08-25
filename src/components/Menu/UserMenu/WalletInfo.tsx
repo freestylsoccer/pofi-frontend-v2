@@ -1,5 +1,4 @@
 import React from 'react'
-import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from '@pancakeswap/uikit'
 import { useWeb3React } from '@web3-react/core'
 import useTokenBalance, { useGetBnbBalance } from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
@@ -7,6 +6,7 @@ import useAuth from 'hooks/useAuth'
 import { useTranslation } from 'contexts/Localization'
 import { getBscScanLink } from 'utils'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import { Box, Button, Flex, InjectedModalProps, LinkExternal, Message, Text } from 'uikit'
 import CopyAddress from './CopyAddress'
 
 interface WalletInfoProps {

@@ -1,5 +1,10 @@
 import React from 'react'
 import { useWeb3React } from '@web3-react/core'
+import useAuth from 'hooks/useAuth'
+import { useProfile } from 'state/profile/hooks'
+import ConnectWalletButton from 'components/ConnectWalletButton'
+import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
+import { useTranslation } from 'contexts/Localization'
 import {
   Flex,
   LogoutIcon,
@@ -7,12 +12,7 @@ import {
   UserMenu as UIKitUserMenu,
   UserMenuDivider,
   UserMenuItem,
-} from '@pancakeswap/uikit'
-import useAuth from 'hooks/useAuth'
-import { useProfile } from 'state/profile/hooks'
-import ConnectWalletButton from 'components/ConnectWalletButton'
-import { FetchStatus, useGetBnbBalance } from 'hooks/useTokenBalance'
-import { useTranslation } from 'contexts/Localization'
+} from 'uikit'
 import WalletModal, { WalletView, LOW_BNB_BALANCE } from './WalletModal'
 import ProfileUserMenuItem from './ProfileUserMenutItem'
 import WalletUserMenuItem from './WalletUserMenuItem'
