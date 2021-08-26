@@ -9,6 +9,8 @@ import { useGasPrice } from 'state/user/hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { useMintState, useDerivedMintInfo, useMintActionHandlers } from 'state/mint/hooks'
 import { getUSDT2Addres } from 'utils/addressHelpers'
+import useTokenBalance, { FetchStatus } from 'hooks/useTokenBalance'
+import { getFullDisplayBalance, getBalanceNumber } from 'utils/formatBalance'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { Field } from 'state/mint/actions'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
@@ -21,6 +23,8 @@ import Dots from 'components/Loader/Dots'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { tryParseAmount } from 'state/swap/hooks'
 import { CurrencyLogo } from 'components/Logo'
+import PageLoader from 'components/Loader/PageLoader'
+
 
 const Container = styled.div.attrs((props) => ({
   className: 'container',
@@ -45,6 +49,8 @@ history,
   const currencyB = useCurrency(currencyIdB)
 
   const defaultAmountParsed = tryParseAmount("1", currencyA)
+
+  const { balance, fetchStatus } = useTokenBalance(currencyIdA)
   
   // mint state
   const { independentField, typedValue, otherTypedValue } = useMintState()
@@ -178,9 +184,72 @@ history,
     setTxHash('')
   }, [onFieldAInput, txHash])
 
+  if(!account) {
+    return ( 
+      <Container>
+        <div className="row">
+          <div className="col">
+            <Button
+              type="button"
+              as={Link}
+              to="/theter-reserve"
+            >
+              back
+            </Button>
+          </div>
+        </div>
+        <div className="row">
+          <div className="col">
+            <div className="basic-form">
+              <div className="caption">
+                <h6>{t('Please connect a wallet')}</h6>
+                <p>
+                  {t('We couldn’t detect a wallet. Connect a wallet to deposit and see your balance grow.')}
+                </p>
+              </div>
+              <div className="text-center mb-3">
+                <ConnectWalletButton />
+              </div>
+            </div>
+          </div>
+        </div>
+      </Container>
+    )
+  }
+
+  if(fetchStatus === "not-fetched") {
+    <PageLoader />
+  }
+
   return (
       <>
-      {!showInvestOverview ? (
+      {account && getBalanceNumber(balance, currencyA.decimals) < 1 && fetchStatus === "success" ? (
+        <Container>
+          <div className="row">
+            <div className="col">
+              <Button
+                type="button"
+                as={Link}
+                to="/theter-reserve"
+              >
+                back
+              </Button>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col">
+              <div className="basic-form">
+                <div className="caption">
+                  <h6>{t('Your balance is zero')}</h6>
+                  <p>
+                    {t('Your balance of %name% is 0. Transfer %name% to your wallet to be able to deposit' , { name: currencyA.name })}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Container>
+      ) : !showInvestOverview && account && fetchStatus === "success" ? (
         <>
         <Container>
           <div className="row">
@@ -215,30 +284,25 @@ history,
                       showMaxButton={!atMaxAmounts[Field.CURRENCY_A]}
                       currency={currencies[Field.CURRENCY_A]}
                       id="add-liquidity-input-tokena"
+                      address={currencyIdA}
                       showCommonBases
                     />
                   </div>
                 </div>
                 <div className="text-center mb-3">
-                  {!account ? (
-                    <ConnectWalletButton />
-                  ) : (
-                  <>
-                    { parsedAmounts[Field.CURRENCY_A] && (
-                        <Button
-                          type="button"
-                          onClick={() => {setShowInvestOverview(!showInvestOverview)}}
-                        >
-                          Continue
-                        </Button>
-                      )}
-                    </>
-                  )}
+                  { parsedAmounts[Field.CURRENCY_A] && (
+                      <Button
+                        type="button"
+                        onClick={() => {setShowInvestOverview(!showInvestOverview)}}
+                      >
+                        Continue
+                      </Button>
+                    )}
                 </div>
               </form>
             </div>
           </div>
-        </Container>        
+        </Container>
       </>
       ) : defaultApproval["0"] === ApprovalState.APPROVED ? (
         <>

@@ -4,6 +4,8 @@ import { Button, ChevronDownIcon, Text, useModal, Flex } from '@pancakeswap/uiki
 import styled from 'styled-components'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getFullDisplayBalance } from 'utils/formatBalance'
 import { useCurrencyBalance } from '../../state/wallet/hooks'
 import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
 import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
@@ -59,6 +61,7 @@ interface CurrencyInputPanelProps {
   otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
+  address: string
 }
 export default function CurrencyInputPanel({
   value,
@@ -75,9 +78,10 @@ export default function CurrencyInputPanel({
   otherCurrency,
   id,
   showCommonBases,
+  address,
 }: CurrencyInputPanelProps) {
   const { account } = useActiveWeb3React()
-  const selectedCurrencyBalance = useCurrencyBalance(account ?? undefined, currency ?? undefined)
+  const selectedCurrencyBalance = useTokenBalance(address ?? undefined)
   const { t } = useTranslation()
   const translatedLabel = label || t('Input')
 
@@ -103,8 +107,8 @@ export default function CurrencyInputPanel({
               <div className="content-value-line">                
                 {account && (
                   <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
-                    {!hideBalance && !!currency && selectedCurrencyBalance
-                      ? t('%amount%', { amount: selectedCurrencyBalance?.toSignificant(6) ?? '' })
+                    {!hideBalance && !!currency && selectedCurrencyBalance.fetchStatus === 'success'
+                      ? t('%amount%', { amount: getFullDisplayBalance(selectedCurrencyBalance.balance, 6) ?? '' })
                       : ' -'}
                   </Text>                  
                 )}

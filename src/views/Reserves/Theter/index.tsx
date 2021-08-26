@@ -4,7 +4,9 @@ import SimpleReactLightbox from 'simple-react-lightbox'
 import { Link } from 'react-router-dom'
 import useReserveLiquidity from 'hooks/useReserveLiquidity'
 import { getUSDT2Addres, getAusdtAddress } from 'utils/addressHelpers'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Button } from 'uikit'
+import ConnectWalletButton from 'components/ConnectWalletButton'
 import MyComponent from './components/MyComponent'
 
 const Container = styled.div.attrs((props) => ({
@@ -69,6 +71,7 @@ const AchievementsCard = styled.div.attrs((props) => ({
 
 const Theter: React.FC = () => {
   const { balance:liquidity, fetchStatus:liquidityFst } = useReserveLiquidity(getUSDT2Addres(), getAusdtAddress())
+  const { account, chainId, library } = useActiveWeb3React()
   
   return(
     <>
@@ -376,13 +379,17 @@ const Theter: React.FC = () => {
                     </div>
                     <div className="text-center">
                       <div className="pricing-btn">
-                        <Button
+                        {!account ? (
+                          <ConnectWalletButton />
+                        ) : (
+                          <Button
                             type="button"
                             as={Link}
                             to="/theter-reserve/add/0x080De04372D5f1E317d492645b923f6286C7eC86"
                           >
                           invest
-                        </Button>
+                          </Button>
+                        )}
                       </div>
                     </div>
                   </div>
