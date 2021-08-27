@@ -192,7 +192,7 @@ export default function Header() {
 
   return (
     <HeaderFrame showBackground={scrollY > 45}>
-			<Title href=".">
+			<Title href="/">
         <UniIcon>
           <img width="24px" src={theme.isDark ? LogoDark : Logo} alt="logo" />
         </UniIcon>

@@ -44,6 +44,7 @@ history,
   const gasPrice = useGasPrice()
   
   const [showInvestOverview, setShowInvestOverview] = useState<boolean>(false)
+  const [amountLimits, setAmountLimits] = useState<number>(0)
 
   const currencyA = useCurrency(currencyIdA)  
   const currencyB = useCurrency(currencyIdB)
@@ -106,25 +107,10 @@ history,
 
   // check whether the user has approved the router on the tokens
   const [approvalA, approveACallback] = useApproveCallback(parsedAmounts[Field.CURRENCY_A], LENDING_POOL_ADDRESS)
-  
+  // try to parse a user entered amount for a given token
   const defaultApproval = useApproveCallback(defaultAmountParsed, LENDING_POOL_ADDRESS)
 
-  const addTransaction = useTransactionAdder()  
-
-  const handleCurrencyASelect = useCallback(
-    (currencyA_: Currency) => {
-      const newCurrencyIdA = currencyId(currencyA_)
-      if (newCurrencyIdA === currencyIdB) {
-        history.push(`/add/${currencyIdB}/${currencyIdA}`)
-      } else {
-        history.push(`/add/${newCurrencyIdA}/${currencyIdB}`)
-      }
-    },
-    [currencyIdB, history, currencyIdA],
-  )
-
-  // try to parse a user entered amount for a given token
-  
+  const addTransaction = useTransactionAdder()
   
   async function onAdd() {
     if (!chainId || !library || !account) return
@@ -181,8 +167,15 @@ history,
     if (txHash) {
       onFieldAInput('')
     }
+    onFieldAInput('')
     setTxHash('')
   }, [onFieldAInput, txHash])
+
+  function handleCancelation(){
+    onFieldAInput('')
+    setTxHash('')
+    history.push('/theter-reserve')
+  }
 
   if(!account) {
     return ( 
@@ -217,21 +210,17 @@ history,
     )
   }
 
-  if(fetchStatus === "not-fetched") {
+  if(fetchStatus !== "success") {
     <PageLoader />
   }
 
   return (
       <>
-      {account && getBalanceNumber(balance, currencyA.decimals) < 1 && fetchStatus === "success" ? (
+      {account && fetchStatus === "success" && getBalanceNumber(balance, currencyA.decimals) < 1 ? (
         <Container>
           <div className="row">
             <div className="col">
-              <Button
-                type="button"
-                as={Link}
-                to="/theter-reserve"
-              >
+              <Button onClick={() => handleCancelation()}>
                 back
               </Button>
             </div>
@@ -250,15 +239,10 @@ history,
           </div>
         </Container>
       ) : !showInvestOverview && account && fetchStatus === "success" ? (
-        <>
         <Container>
           <div className="row">
             <div className="col">
-              <Button
-                type="button"
-                as={Link}
-                to="/theter-reserve"
-              >
+              <Button onClick={() => handleCancelation()}>
                 back
               </Button>
             </div>
@@ -267,9 +251,9 @@ history,
             <div className="col">
               <form className="basic-form">
                 <div className="caption">
-                  <h6>How much would you like to deposit?</h6>
+                  <h6>{t('How much would you like to deposit?')}</h6>
                   <p>
-                    Please enter an amount you would like to deposit. The maximum amount you can deposit is shown below.
+                    {t('Please enter an amount you would like to deposit. The maximum amount you can deposit is shown below.')}
                   </p>
                 </div>
                 <div className="basic-form-inner mb-3">
@@ -280,7 +264,6 @@ history,
                       onMax={() => {
                         onFieldAInput(maxAmounts[Field.CURRENCY_A]?.toExact() ?? '')
                       }}
-                      onCurrencySelect={handleCurrencyASelect}
                       showMaxButton={!atMaxAmounts[Field.CURRENCY_A]}
                       currency={currencies[Field.CURRENCY_A]}
                       id="add-liquidity-input-tokena"
@@ -290,21 +273,22 @@ history,
                   </div>
                 </div>
                 <div className="text-center mb-3">
-                  { parsedAmounts[Field.CURRENCY_A] && (
+                  { parsedAmounts[Field.CURRENCY_A] && +typedValue <= getBalanceNumber(balance, currencyA.decimals) ? (
                       <Button
                         type="button"
                         onClick={() => {setShowInvestOverview(!showInvestOverview)}}
                       >
                         Continue
                       </Button>
+                    ) : parsedAmounts[Field.CURRENCY_A] && +typedValue > getBalanceNumber(balance, currencyA.decimals) && (
+                      <span>{t('Insufficient balance, choose a lower amount')}</span>
                     )}
                 </div>
               </form>
             </div>
           </div>
         </Container>
-      </>
-      ) : defaultApproval["0"] === ApprovalState.APPROVED ? (
+      ) : account && fetchStatus === "success" && defaultApproval["0"] === ApprovalState.APPROVED ? (
         <>
           <Container>
             <div className="row">
@@ -451,7 +435,7 @@ history,
             </div>
           </Container>
         </>
-      ) : (
+      ) : account && fetchStatus === "success" && defaultApproval["0"] !== ApprovalState.APPROVED ? (
         <>
           <Container>
             <div className="row">
@@ -532,6 +516,8 @@ history,
             </div>
           </Container>
         </>
+      ) : (
+        <PageLoader />
       )}
     </>
   )

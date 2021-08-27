@@ -1,58 +1,19 @@
 import React from 'react'
 import { Currency, Pair } from '@pancakeswap/sdk'
-import { Button, ChevronDownIcon, Text, useModal, Flex } from '@pancakeswap/uikit'
-import styled from 'styled-components'
+import { Button, Text } from '@pancakeswap/uikit'
 import { useTranslation } from 'contexts/Localization'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getFullDisplayBalance } from 'utils/formatBalance'
-import { useCurrencyBalance } from '../../state/wallet/hooks'
-import CurrencySearchModal from '../SearchModal/CurrencySearchModal'
-import { CurrencyLogo, DoubleCurrencyLogo } from '../Logo'
-
-import { RowBetween } from '../Layout/Row'
+import { CurrencyLogo } from '../Logo'
 import { Input as NumericalInput } from './NumericalInput'
 
-const InputRow = styled.div<{ selected: boolean }>`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
-`
-const CurrencySelectButton = styled(Button).attrs({ variant: 'text', scale: 'sm' })`
-  padding: 0 0.5rem;
-`
-const LabelRow = styled.div`
-  display: flex;
-  flex-flow: row nowrap;
-  align-items: center;
-  color: ${({ theme }) => theme.colors.text};
-  font-size: 0.75rem;
-  line-height: 1rem;
-  padding: 0.75rem 1rem 0 1rem;
-`
-const InputPanel = styled.div<{ hideInput?: boolean }>`
-  max-width: 350px;
-  border: 1px solid rgb(56, 61, 8);
-  display: flex;
-  -webkit-box-align: center;
-  align-items: center;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  padding: 0px 15px;
-  border-radius: 2px;
-  transition: all 0.2s ease 0s;
-`
-const Container = styled.div<{ hideInput: boolean }>`
-  border-radius: 0px;
-`
 interface CurrencyInputPanelProps {
   value: string
   onUserInput: (value: string) => void
   onMax?: () => void
   showMaxButton: boolean
   label?: string
-  onCurrencySelect: (currency: Currency) => void
   currency?: Currency | null
   disableCurrencySelect?: boolean
   hideBalance?: boolean
@@ -69,7 +30,6 @@ export default function CurrencyInputPanel({
   onMax,
   showMaxButton,
   label,
-  onCurrencySelect,
   currency,
   disableCurrencySelect = true,
   hideBalance = false,
@@ -83,16 +43,6 @@ export default function CurrencyInputPanel({
   const { account } = useActiveWeb3React()
   const selectedCurrencyBalance = useTokenBalance(address ?? undefined)
   const { t } = useTranslation()
-  const translatedLabel = label || t('Input')
-
-  const [onPresentCurrencyModal] = useModal(
-    <CurrencySearchModal
-      onCurrencySelect={onCurrencySelect}
-      selectedCurrency={currency}
-      otherSelectedCurrency={otherCurrency}
-      showCommonBases={showCommonBases}
-    />,
-  )
 
   return (
     <>
