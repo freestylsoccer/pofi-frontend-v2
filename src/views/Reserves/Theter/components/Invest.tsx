@@ -210,13 +210,13 @@ history,
     )
   }
 
-  if(fetchStatus !== "success") {
+  if(fetchStatus !== "success"  && currencyA === null) {
     <PageLoader />
   }
 
   return (
       <>
-      {account && fetchStatus === "success" && getBalanceNumber(balance, currencyA.decimals) < 1 ? (
+      {account && fetchStatus === "success" && currencyA !== null && getBalanceNumber(balance, currencyA.decimals) < 1 ? (
         <Container>
           <div className="row">
             <div className="col">
@@ -238,7 +238,7 @@ history,
             </div>
           </div>
         </Container>
-      ) : !showInvestOverview && account && fetchStatus === "success" ? (
+      ) : !showInvestOverview && account  && currencyA !== null && fetchStatus === "success" ? (
         <Container>
           <div className="row">
             <div className="col">
@@ -288,7 +288,7 @@ history,
             </div>
           </div>
         </Container>
-      ) : account && fetchStatus === "success" && defaultApproval["0"] === ApprovalState.APPROVED ? (
+      ) : account  && currencyA !== null && fetchStatus === "success" && defaultApproval["0"] === ApprovalState.APPROVED ? (
         <>
           <Container>
             <div className="row">
@@ -435,7 +435,7 @@ history,
             </div>
           </Container>
         </>
-      ) : account && fetchStatus === "success" && defaultApproval["0"] !== ApprovalState.APPROVED ? (
+      ) : account  && currencyA !== null && fetchStatus === "success" && defaultApproval["0"] !== ApprovalState.APPROVED ? (
         <>
           <Container>
             <div className="row">

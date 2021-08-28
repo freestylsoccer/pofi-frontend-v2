@@ -50,7 +50,7 @@ export default function CurrencyInputPanel({
       <div className="amount-field-inner">
         <div className="row-amount-field">
           <div className="row-title-inner">
-            <div className="row-title">Available to deposit</div>
+            <div className="row-title">{t('Available to deposit')}</div>
           </div>
           <div className="row-content">
             <div className="content-value">

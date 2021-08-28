@@ -1,11 +1,11 @@
 import { useEffect, useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { getBep20Contract } from 'utils/contractHelpers'
+import { getProtocolDataProvider } from 'utils/contractHelpers'
 import { BIG_ZERO } from 'utils/bigNumber'
 import useRefresh from './useRefresh'
 
 type UseReserveLiquidity = {
-  balance: BigNumber
+  liquidity: BigNumber
   fetchStatus: FetchStatus
 }
 
@@ -15,35 +15,35 @@ export enum FetchStatus {
   FAILED = 'failed',
 }
 
-const useReserveLiquidity = (tokenAddress: string, account: string) => {
+const useReserveLiquidity = (dataProviderAddress: string, reserve: string) => {
   const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
-  const [balanceState, setBalanceState] = useState<UseReserveLiquidity>({
-    balance: BIG_ZERO,
+  const [liquidityState, setLiquidityState] = useState<UseReserveLiquidity>({
+    liquidity: BIG_ZERO,
     fetchStatus: NOT_FETCHED,
   })  
   const { fastRefresh } = useRefresh()
 
   useEffect(() => {
-    const fetchBalance = async () => {
-      const contract = getBep20Contract(tokenAddress)
+    const fetchLiquidity = async () => {
+      const contract = getProtocolDataProvider(dataProviderAddress)
       try {
-        const res = await contract.balanceOf(account)
-        setBalanceState({ balance: new BigNumber(res.toString()), fetchStatus: SUCCESS })
+        const res = await contract.getReserveData(reserve)
+        setLiquidityState({ liquidity: new BigNumber(res.availableLiquidity.toString()), fetchStatus: SUCCESS })
       } catch (e) {
         console.error(e)
-        setBalanceState((prev) => ({
+        setLiquidityState((prev) => ({
           ...prev,
           fetchStatus: FAILED,
         }))
       }
     }
 
-    if (account) {
-      fetchBalance()
+    if (reserve) {
+      fetchLiquidity()
     }
-  }, [account, tokenAddress, fastRefresh, SUCCESS, FAILED])
+  }, [reserve, dataProviderAddress, fastRefresh, SUCCESS, FAILED])
 
-  return balanceState
+  return liquidityState
 }
 
 export default useReserveLiquidity

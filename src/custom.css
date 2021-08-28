@@ -449,6 +449,7 @@ Reserve Section Style
   font-weight: 400;
   line-height: 28px;
   margin: 0px;
+  margin-bottom: 0px !important;
 }
 .proy-desc-area i, span, a{
   display: inline-block;
@@ -551,7 +552,9 @@ width: 70%;
 /*skill and intrests ends*/
 
 /* Achievements */
-
+.cards {
+  margin-bottom: 4rem;
+}
 .achievements {
   width: inherit;
 }
@@ -603,21 +606,22 @@ color: #81899C !important;
 line-height: 20px !important;
 font-size: 16px !important;
 }
-@media only screen and (min-width: 768px) and (max-width: 1200px) {
+@media only screen and (min-width: 768px) and (max-width: 1022px) {
   .achievements .card {
-      max-width: 48%;
+      max-width: 48% !important;
+      position: inherit !important;
   }
 }
-@media(max-width: 767px) {
+@media only screen and (max-width: 767px) {
   .achievements .card {
-      max-width: 100%;
-      position: inherit;
+      max-width: 100% !important;
+      position: inherit !important;
   }
 }
-@media only screen and (min-width: 576px) and (max-width:767px) {
+@media only screen and (min-width: 1023px) {
   .achievements .card {
-      max-width: 100%;
-      position: inherit;
+      max-width: 33% !important;
+      position: inherit !important;
   }
 }
 /* Achievements ends */
@@ -783,11 +787,21 @@ font-weight: 300;
   border-radius: 0.25rem;
 }
 
+@media only screen and (min-width: 1024px) {
+  .single-pricing {
+    border-radius: 0.25rem;
+    position: fixed;
+    width: 320px;
+    top: 10%;
+    right: 2%;
+  }
+}
+
 .single-pricing .pricing-package .package-title {
   padding: 1rem;
 }
 .single-pricing .pricing-body .pricing-text {
-  padding: 8px 25px;
+  padding: 0px 22px;
 }
 .single-pricing .pricing-body .pricing-text .price {
   font-size: 30px;
@@ -803,8 +817,8 @@ font-weight: 300;
   font-size: 16px;
 }
 .single-pricing .pricing-body .pricing-btn {
-  padding-top: 25px;
-  padding-bottom: 40px;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }
 .single-pricing .pricing-body .pricing-btn .main-btn {
   background-color: #fff;
@@ -842,12 +856,9 @@ font-weight: 300;
   margin-top: 5px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
-  .pricing-desc-content ul li {
-      width: 100%;
-      float: none;
-  }
+  
 }
-@media(max-width: 767px) {
+@media(max-width: 1023px) {
   .single-pricing {
       position: fixed;
       left: 50%;

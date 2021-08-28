@@ -2,11 +2,15 @@ import React from 'react'
 import styled from 'styled-components/macro'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'contexts/Localization'
 import useReserveLiquidity from 'hooks/useReserveLiquidity'
-import { getUSDT2Addres, getAusdtAddress } from 'utils/addressHelpers'
+import { getUSDT2Addres } from 'utils/addressHelpers'
+import { getFullDisplayBalance, getBalanceNumber } from 'utils/formatBalance'
+import { PROTOCOL_DATA_PROVIDER_ADDRESS } from 'config/constants'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { Button } from 'uikit'
 import ConnectWalletButton from 'components/ConnectWalletButton'
+import PageLoader from 'components/Loader/PageLoader'
 import MyComponent from './components/MyComponent'
 
 const Container = styled.div.attrs((props) => ({
@@ -21,7 +25,7 @@ const InfoTextSecondary = styled.p`
   color: ${({ theme }) => theme.colors.text2};
 `
 const PackageTitle = styled.div`
-  padding: 1rem;
+  padding: 0.5rem;
   color: ${({ theme }) => theme.colors.text1};
 `
 const Price = styled.span`
@@ -57,7 +61,7 @@ const CardSpan = styled.span`
   color: ${({ theme }) => theme.colors.text3};
 `
 const AchievementsCard = styled.div.attrs((props) => ({
-  className: 'col-lg-6 card',
+  className: 'card',
 }))`
   background: ${({ theme }) => theme.colors.bg0};
   color: ${({ theme }) => theme.colors.blue5};
@@ -70,9 +74,18 @@ const AchievementsCard = styled.div.attrs((props) => ({
 `
 
 const Theter: React.FC = () => {
-  const { balance:liquidity, fetchStatus:liquidityFst } = useReserveLiquidity(getUSDT2Addres(), getAusdtAddress())
-  const { account, chainId, library } = useActiveWeb3React()
+  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, getUSDT2Addres())
+  const { account } = useActiveWeb3React()
+  const { t } = useTranslation()
   
+  const targeAmount = 650000 - getBalanceNumber(liquidity, 6)
+  const maxAmount = 750000
+  const progress = (getBalanceNumber(liquidity, 6) / 650000) * 100
+
+  if(fetchStatus !== "success") {
+    return <PageLoader />
+  }
+
   return(
     <>
       <section className="reserve">
@@ -94,14 +107,14 @@ const Theter: React.FC = () => {
         </div>
       </section>
       
-      <section id="proy-desc" className="proy-desc-area pt-125 pb-130">
+      <section id="proy-desc" className="proy-desc-area">
         <Container>
           <div className="row">
             <div className="col-lg-8">
               <Container>
                 <div className="row">
                   <div className="col-12">
-                    <div className="proy-desc-content mt-50">
+                    <div className="proy-desc-content text-justify">
                       <p>
                         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt
                         ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
@@ -114,7 +127,7 @@ const Theter: React.FC = () => {
                       <div className="col-lg-6 proy-desc-content mt-50">
                         <ul className="clearfix">
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-calendar">*</i>
                               </div>
@@ -126,14 +139,14 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-phone-handset">*</i>
                               </div>
@@ -145,14 +158,14 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-phone-handset">*</i>
                               </div>
@@ -164,14 +177,14 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-map-marker">*</i>
                               </div>
@@ -183,7 +196,7 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
@@ -194,7 +207,7 @@ const Theter: React.FC = () => {
                       <div className="col-lg-6 proy-desc-content mt-50">
                         <ul className="clearfix">
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-calendar">*</i>
                               </div>
@@ -206,14 +219,14 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-phone-handset">*</i>
                               </div>
@@ -225,14 +238,14 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-phone-handset">*</i>
                               </div>
@@ -244,14 +257,14 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-icon">
                                 <i className="lni-map-marker">*</i>
                               </div>
@@ -263,7 +276,7 @@ const Theter: React.FC = () => {
                             </div>
                           </li>
                           <li>
-                            <div className="single-info d-flex align-items-center">
+                            <div className="single-info d-flex justify-content-center">
                               <div className="info-text">
                                 <InfoTextSecondary>sit amet, consectetur</InfoTextSecondary>
                               </div>
@@ -281,29 +294,28 @@ const Theter: React.FC = () => {
                 <Pricing>
                   <div className="pricing-package text-center">
                     <PackageTitle>
-                      Quedan
-                      <h6>$2,747,847 MXN</h6>
-                      disponibles para invertir
+                      <h6>${targeAmount.toLocaleString('en-US')}</h6>
+                      {t('to get the minimum amount')}
                     </PackageTitle>
                   </div>
                   <div className="pricing-body">
-                    <div className="advance px-3 pb-3">
+                    <div className="advance px-3">
                       <div className="progress">
                         <div
                           className="progress-bar"
                           role="progressbar"
-                          aria-valuenow={30}
+                          aria-valuenow={0}
                           aria-valuemin={0}
                           aria-valuemax={100}
-                          style={{ width: "30%" }}
+                          style={{ width: `${progress}%`}}
                         >
                           <span> </span>
                         </div>
                       </div>
                     </div>
                     <div className="pricing-text text-center pt-3">
-                      <h5>Monto Conseguido</h5>
-                      <Price>$8,738,731</Price>
+                      <h5>{t('Amount achieved')}</h5>
+                      <Price>${getBalanceNumber(liquidity, 6).toLocaleString('en-US')}</Price>
                     </div>
                     <div className="pricing-desc-content">
                       <ul className="clearfix">
@@ -323,7 +335,7 @@ const Theter: React.FC = () => {
                               <p className="text-center">
                                 <Price>A</Price>
                               </p>
-                              <p className="pl-5">Risk Type</p>
+                              <p className="pl-4">Risk Type</p>
                             </div>
                           </div>
                         </li>
@@ -379,16 +391,16 @@ const Theter: React.FC = () => {
                     </div>
                     <div className="text-center">
                       <div className="pricing-btn">
-                        {!account ? (
-                          <ConnectWalletButton />
-                        ) : (
+                        { getBalanceNumber(liquidity, 6) < maxAmount ? (
                           <Button
                             type="button"
                             as={Link}
                             to="/theter-reserve/add/0x080De04372D5f1E317d492645b923f6286C7eC86"
                           >
-                          invest
+                          {t('Invest')}
                           </Button>
+                        ) : getBalanceNumber(liquidity, 6) >= maxAmount && (
+                          <span>{t('This opportunity is no longer receiving investments')}</span>
                         )}
                       </div>
                     </div>
@@ -403,7 +415,7 @@ const Theter: React.FC = () => {
       <section className="skills-section pt-5">
         <Container>
           <div className="row">
-            <div className="col">
+            <div className="col-12 col-lg-8 col-xl-6">
               <h2 className="section-title">Lorem ipsum</h2>
               <div className="list-card">
                 <span className="exp">Excepteur sint</span>
@@ -427,7 +439,7 @@ const Theter: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="col">
+            <div className="col-12 col-lg-8 col-xl-6">
               <h2 className="section-title">Lorem ipsum</h2>
               <div className="list-card">
                 <div>
@@ -448,7 +460,7 @@ const Theter: React.FC = () => {
         </Container>
       </section>
 
-      <section className="achievements p-5">
+      <section className="achievements">
         <div className="container cards">
           <div className="row">
             <AchievementsCard>
