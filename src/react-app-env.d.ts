@@ -9,3 +9,8 @@ interface Window {
     bnbSign?: (address: string, message: string) => Promise<{ publicKey: string; signature: string }>
   }
 }
+
+declare module '*.mp4' {
+  const src: string;
+  export default src;
+}

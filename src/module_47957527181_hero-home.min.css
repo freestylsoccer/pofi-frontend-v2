@@ -1,0 +1,156 @@
+h3 {
+  line-height:1.4
+}
+#hs_cos_wrapper_widget_1622607840129_ p {
+  font-size:1.125rem !important
+}
+
+article .hero,video#bgvideo {
+  *position:relative;
+  color:#fff !important
+}
+article #hero-text h1 {
+  font-family:Merriweather !important;
+  font-size:2.8125rem !important;
+  font-weight:bold !important;
+  font-stretch:normal;
+  font-style:normal;
+  line-height:1.25;
+  letter-spacing:normal;
+  color:#fff !important;
+}
+#video-background-wrapper {
+  position:absolute;
+  right:0px;
+  top:0px;
+  height:100%;
+  width:100%;
+  overflow:hidden
+}
+video#bgvideo {
+  object-fit:cover;
+  position:absolute;
+  background-size:cover;
+  transition-timing-function:ease-in;
+  transition-duration:430ms;
+  transition-property:opacity
+}
+.home .hero .container .row {
+  padding-top:0px !important
+}
+.hbspt-form h2 {
+  font-size:1.125rem !important
+}
+.hbspt-form form label {
+  display:none !important
+}
+fieldset.form-columns-1 .hs-input input {
+  width:100% !important
+}
+.hs-custom-style>div input:not([type="image"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="file"]),.hs-custom-style fieldset input:not([type="image"]):not([type="submit"]):not([type="button"]):not([type="radio"]):not([type="checkbox"]):not([type="file"]) {
+  box-sizing:border-box;
+  padding:0 15px;
+  min-height:27px
+}
+.hs-button,.hs-form-field input[type="text"],.hs-form-field input[type="email"],.hs-form-field input[type="phone"],.hs-form-field input[type="number"],.hs-form-field input[type="tel"],.hs-form-field input[type="date"],.hs-form-field textarea {
+  -webkit-appearance:none;
+  -moz-appearance:none
+}
+input.hs-input.error,div.field.error input,div.field.error textarea,div.field.error .chzn-choices,textarea.hs-input.error,select.hs-input.error {
+  border-color:#c87872 !important
+}
+.hs-custom-style .hs-input,.hs-custom-style fieldset {
+  max-width:100%
+}
+.hs-input:not([type="file"]) {
+  background-color:#f5f8fa !important
+}
+.hs-form .hs-input {
+  display:inline-block;
+  max-width:500px;
+  height:40px;
+  padding:9px 10px !important;
+  font-family:"Lato",sans-serif;
+  font-size:16px;
+  font-weight:normal;
+  line-height:22px;
+  color:#33475b !important;
+  border:1px solid #cbd6e2 !important;
+  box-sizing:border-box;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  -ms-border-radius:3px;
+  border-radius:3px !important;
+  margin-bottom:15px !important
+}
+.hero .hs-form .hs-button {
+  font-family:pragati narrow,sans-serif;
+  cursor:pointer;
+  border-radius:2px !important;
+  box-shadow:0 2px 4px rgb(0 0 0 / 35%) !important;
+  border:1px solid transparent !important;
+  background-color:#2e96d9 !important;
+  color:#fff;
+  text-transform:uppercase;
+  white-space:nowrap !important;
+  font-size:1.125rem !important;
+  font-weight:700 !important;
+  font-style:normal;
+  font-stretch:normal;
+  line-height:1.57 !important;
+  margin-top:10px !important;
+  margin-bottom:15px !important;
+  padding:.5rem 2.125rem !important;
+  margin-top:.5rem !important
+}
+.hero .hs-form .hs-button:hover {
+  background-color:#2b7eb3 !important;
+  background:#2b7eb3 !important
+}
+.hs-form .hs-input:focus {
+  border-color:#2e96d9;
+  box-shadow:unset !important;
+  outline:unset !important
+}
+.hs-form [type="submit"] {
+  margin-top:15px !important
+}
+@media(max-width:1200px) {
+  article .hero,#video-background-wrapper,video {
+  height:650px !important
+}
+
+}
+@media(max-width:1024px) {
+  article #hero-text h1 {
+  font-size:2.8rem !important
+}
+article .hero,article .hero-inner,#video-background-wrapper,video {
+  height:850px !important;
+  min-height:unset !important
+}
+#hero-ctas .btn {
+  padding:1.0625rem 1.85rem !important
+}
+
+}
+@media(max-width:768px) {
+  article #hero-text h1 {
+  font-size:1.675rem !important
+}
+article #hero-text h3 {
+  font-size:1.4rem !important
+}
+
+}
+@media(max-width:576px) {
+  .hs-submit>.actions {
+  text-align:center !important
+}
+}
+
+.hero-header-text .subtitle {
+  font-size: 1.75rem !important;
+  color: white !important;
+  margin-bottom: 0.5rem;
+}

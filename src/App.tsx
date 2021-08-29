@@ -40,12 +40,12 @@ const BodyWrapper = styled.div`
   display: flex;
   flex-direction: column;
   width: 100%;
-  padding: 120px 16px 0px 16px;
+  
   align-items: center;
   flex: 1;
   z-index: 1;
   ${({ theme }) => theme.mediaQueries.sm} {
-    padding: 6rem 16px 16px 16px;
+    
   }
 `
 

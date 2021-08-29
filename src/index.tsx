@@ -7,8 +7,12 @@ import MulticallUpdater from './state/multicall/updater'
 import TransactionUpdater from './state/transactions/updater'
 import App from './App'
 import Providers from './Providers'
-import './bootstrap.css'
-import './custom.css'
+import './bootstrap.min.css'
+// import './custom.css'
+import './main.min.css'
+import './crowdstreet-overrides.min.css'
+import './CS2021-style.min.css'
+import './module_47957527181_hero-home.min.css'
 
 function Updaters() {
   return (
