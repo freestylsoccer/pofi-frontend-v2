@@ -17,58 +17,176 @@ const StyledNotFound = styled.div`
 const Home: React.FC = () => {  
   const { t } = useTranslation()
   return (
-    <div className="body-wrapper   hs-content-id-48242504006 hs-site-page page ">
-      <main id="main" className="body-container-wrapper main">
+    <div>
+      <main id="main">
         <article>
           <div className="container-fluid dnd_area_main">
-            <div className="row-fluid-wrapper">
-              <div className="row-fluid">
-                <div className="span12 widget-span widget-type-cell " data-widget-type="cell" data-x="0" data-w="12">
-                  <div className="row-fluid-wrapper row-depth-1 row-number-3 dnd-section">
-                    <div className="row-fluid ">
-                      <div className="span12 widget-span widget-type-cell dnd-column" data-widget-type="cell" data-x="0" data-w="12">
-                        <div className="row-fluid-wrapper row-depth-1 row-number-4 dnd-row">
-                          <div className="row-fluid ">
-                            <div className="span12 widget-span widget-type-custom_widget dnd-module" data-widget-type="custom_widget" data-x="0" data-w="12">
-                              <div id="hs_cos_wrapper_widget_1622601668503" className="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_module" data-hs-cos-general-type="widget" data-hs-cos-type="module">
-                                <article className="full-width-lg home page type-page status-publish has-post-thumbnail hentry" id="module-widget_1622601668503">
-                                  <header className="hero entry-content">
-                                    <div id="video-background-wrapper">
-                                      <video playsInline autoPlay loop muted poster="https://f.hubspotusercontent00.net/hubfs/5438855/Imported%20images/Screen-Shot-2021-02-09-at-10.53.31-AM.png" id="bgvideo" width="100%" height="100%">
-                                        <source src={myVideo} type="video/mp4"/>
-                                      </video>
+            <div className="row-fluid">
+              <div className="span12">                              
+                <article className="full-width-lg home">
+                  <header className="hero" style={{background: 'rgb(0 0 1 / 65%)'}}>
+                    <div id="video-background-wrapper">
+                      <video playsInline autoPlay loop muted poster="https://f.hubspotusercontent00.net/hubfs/5438855/Imported%20images/Screen-Shot-2021-02-09-at-10.53.31-AM.png" id="bgvideo" width="100%" height="100%">
+                        <source src={myVideo} type="video/mp4"/>
+                      </video>
+                    </div>
+                    <div className="container h-100">
+                      <div className="row justify-content-center h-100">
+                        <div className="col-lg-12 px-lg-5 px-3 d-flex hero-inner align-items-stretch h-100">
+                          <div className="row justify-content-start align-items-stretch">
+                            <div className="col-md-7 col-sm-12 d-flex flex-row">
+                              <div id="hero-text" className="pr-xl-3 ml-3">
+                                <div className="d-flex flex-column align-items-end justify-content-center h-100">
+                                  <div className="hero-header-text mb-3">
+                                    <h1 className="mb-auto">Welcome to the future of real estate investing.</h1>
+                                    <h3 className="mt-3 subtitle">You deserve a better way to invest in real estate Simple, low-cost, and more powerful than ever Powered by Blockchain Tech.</h3>
+                                    <div>
+                                      <button type="button">Get Started</button>
                                     </div>
-                                    <div className="container h-100">
-                                      <div className="row justify-content-center h-100">
-                                        <div className="col-lg-12 px-lg-5 px-3 d-flex hero-inner align-items-stretch h-100">
-                                          <div className="row justify-content-start align-items-stretch">
-                                            <div className="col-md-7 col-sm-12 d-flex flex-row">
-                                              <div id="hero-text" className="pr-xl-3 ml-3">
-                                                <div className="d-flex flex-column align-items-end justify-content-center h-100">
-                                                  <div className="hero-header-text mt5 mb-3">
-                                                    <h1 className="mb-auto">Welcome to the future of real estate investing.</h1>
-                                                    <h3 className="mt-3 subtitle">You deserve a better way to invest in real estate Simple, low-cost, and more powerful than ever Powered by Blockchain Tech.</h3>
-                                                    <div id="hs_cos_wrapper_widget_1622601668503_" className="hs_cos_wrapper hs_cos_wrapper_widget hs_cos_wrapper_type_inline_rich_text" data-hs-cos-general-type="widget" data-hs-cos-type="inline_rich_text" data-hs-cos-field="paragraph_text">
-                                                      <p>
-                                                        <span className="hs-cta-wrapper" id="hs-cta-wrapper-c346d697-5d7c-4009-8121-67310e79b189">
-                                                          <span className="hs-cta-node hs-cta-c346d697-5d7c-4009-8121-67310e79b189" id="hs-cta-c346d697-5d7c-4009-8121-67310e79b189">
-                                                            <button type="button">Get Started</button>
-                                                          </span>
-                                                        </span>
-                                                      </p>
-                                                    </div>
-                                                  </div>
-                                                </div>
-                                              </div>
-                                            </div>
-                                            <div className="col-md-5 col-sm-12 d-flex flex-column justify-content-center"/>
-                                          </div>
-                                        </div>
-                                      </div>
-                                    </div>
-                                  </header>
-                                </article>
+                                  </div>
+                                </div>
                               </div>
+                            </div>
+                            <div className="col-md-5 col-sm-12 d-flex flex-column justify-content-center"/>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </header>
+                </article>
+              </div>
+            </div>
+          </div>
+        </article>
+      </main>
+
+      <div>
+        <div className="caYAva">
+          <div className="bvBEdq">
+            <div className="XYtKs">
+              <div className="bVLBoW">
+                <p className="glHQJt">EXPLORE OPPORTUNITIES BEYOND STOCKS AND BONDS</p>
+                <p className="bkOndA">Diversify with thoroughly vetted commercial real estate with the potential to generate income and grow in value.
+                </p>
+                <div className="dZGjWY">
+                  <a className="gPmAng"href="investment-opportunities.html">Open Investments</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="duxOcS">
+            <div className="gAeGzz">
+              <div className="bPHxiG">
+                <div className="fQtwOd">
+                  <p className="cAyDCf">Access
+                  </p>
+                  <p className="jGZFMF">Private Market Offerings.
+                  </p>
+                </div>
+              </div>
+              <div className="jCWujc">
+                <div className="fQtwOd">
+                  <p className="cAyDCf">Invest
+                  </p>
+                  <p className="jGZFMF">IN PRIVATE PLACEMENTS AND REAL ESTATE INVESTMENT TRUSTS (“REITS”)</p>
+                </div>
+              </div>
+              <div className="jRJUUs">
+                <div className="cwbiEW">
+                  <p className="cAyDCf">GAIN
+                  </p>
+                  <p className="jGZFMF">EXPOSURE TO  MORE DEALS.</p>
+                </div>
+              </div>
+              <div className="cMzbYy">
+                <a className="XzGWN" href="investment-options.html">Open Investments</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="wrap">
+        <div className="content">
+          <main className="main">
+            <div className="fl-builder-content">
+              <div className="fl-row fl-row-fixed-width">
+                <div className="fl-row-content-wrap">
+                  <div className="fl-row-content fl-row-fixed-width">
+                    <div className="fl-col-group">
+                      <div className="fl-col">
+                        <div className="fl-col-content">
+                          <div className="fl-module fl-module-heading xlg">
+                            <div className="fl-module-content">
+                              <h1 className="fl-heading">
+                                <span className="fl-heading-text">Why invest with Origin?</span>
+                              </h1>
+                            </div>
+                          </div>
+                          <div className="fl-module lg">
+                            <div className="fl-module-content">
+                              <div className="fl-rich-text">
+                                <p className="text-center">We are on a mission to transform the way individuals invest in real estate.
+                                  <a className="utility-link" href="our-story.html">Learn more</a>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="fl-col-group fl-col-group-equal-height fl-col-group-align-center">
+                      <div className="fl-col fl-col-small">
+                        <div className="fl-col-content">
+                          <div className="fl-module fl-module-heading">
+                            <div className="fl-module-content">
+                              <h1 className="fl-heading">
+                                <span className="fl-heading-text xxlg">28%</span>
+                              </h1>
+                            </div>
+                          </div>
+                          <div className="fl-module fl-module-heading header-bar-md">
+                            <div className="fl-module-content">
+                              <h3 className="fl-heading">
+                                <span className="fl-heading-text">Average Gross IRR**</span>
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="fl-col fl-col-small">
+                        <div className="fl-col-content">
+                          <div className="fl-module fl-module-heading">
+                            <div className="fl-module-content">
+                              <h1 className="fl-heading">
+                                <span className="fl-heading-text xxlg">$60M</span>
+                              </h1>
+                            </div>
+                          </div>
+                          <div className="fl-module fl-module-heading header-bar-md">
+                            <div className="fl-module-content">
+                              <h3 className="fl-heading">
+                                <span className="fl-heading-text">CEO Co-Investment</span>
+                              </h3>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="fl-col fl-col-small">
+                        <div className="fl-col-content">
+                          <div className="fl-module fl-module-heading">
+                            <div className="fl-module-content">
+                              <h1 className="fl-heading">
+                                <span className="fl-heading-text xxlg">$2.5B</span>
+                              </h1>
+                            </div>
+                          </div>
+                          <div className="fl-module fl-module-heading header-bar-md">
+                            <div className="fl-module-content">
+                              <h3 className="fl-heading">
+                                <span className="fl-heading-text">Transactions Executed</span>
+                              </h3>
                             </div>
                           </div>
                         </div>
@@ -78,9 +196,9 @@ const Home: React.FC = () => {
                 </div>
               </div>
             </div>
-          </div>
-        </article>
-      </main>
+          </main>
+        </div>
+      </div>
     </div>
   )
 }
