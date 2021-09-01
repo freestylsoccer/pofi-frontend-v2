@@ -1,21 +1,15 @@
 import React from 'react'
-import styled from 'styled-components'
-import { Button, Heading, Text, LogoIcon } from '@pancakeswap/uikit'
-import Page from 'components/Layout/Page'
 import { useTranslation } from 'contexts/Localization'
 import myVideo from 'assets/video/myvideo.mp4'
+import step1 from 'assets/svg/step1.svg'
+import step2 from 'assets/svg/step2.svg'
+import step3 from 'assets/svg/step3.svg'
 
-const StyledNotFound = styled.div`
-  align-items: center;
-  display: flex;
-  flex-direction: column;
-  height: calc(100vh - 64px);
-  justify-content: center;
-`
 
 
 const Home: React.FC = () => {  
   const { t } = useTranslation()
+  // https://undraw.co/illustrations
   return (
     <div>
       <main id="main">
@@ -38,10 +32,10 @@ const Home: React.FC = () => {
                               <div id="hero-text" className="pr-xl-3 ml-3">
                                 <div className="d-flex flex-column align-items-end justify-content-center h-100">
                                   <div className="hero-header-text mb-3">
-                                    <h1 className="mb-auto">Welcome to the future of real estate investing.</h1>
-                                    <h3 className="mt-3 subtitle">You deserve a better way to invest in real estate Simple, low-cost, and more powerful than ever Powered by Blockchain Tech.</h3>
+                                    <h1 className="mb-auto">{t('Welcome to the future of real estate investing.')}</h1>
+                                    <h3 className="mt-3 subtitle">{t('You deserve a better way to invest in real estate Simple, low-cost, and more powerful than ever Powered by Blockchain Tech.')}</h3>
                                     <div>
-                                      <button type="button">Get Started</button>
+                                      <button type="button">{t('Get Started')}</button>
                                     </div>
                                   </div>
                                 </div>
@@ -60,143 +54,198 @@ const Home: React.FC = () => {
         </article>
       </main>
 
-      <div>
-        <div className="caYAva">
-          <div className="bvBEdq">
-            <div className="XYtKs">
-              <div className="bVLBoW">
-                <p className="glHQJt">EXPLORE OPPORTUNITIES BEYOND STOCKS AND BONDS</p>
-                <p className="bkOndA">Diversify with thoroughly vetted commercial real estate with the potential to generate income and grow in value.
-                </p>
-                <div className="dZGjWY">
-                  <a className="gPmAng"href="investment-opportunities.html">Open Investments</a>
-                </div>
+      <div className="caYAva">
+        <div className="bvBEdq">
+          <div className="XYtKs">
+            <div className="bVLBoW">
+              <p className="glHQJt">{t('EXPLORE OPPORTUNITIES BEYOND STOCKS AND BONDS')}</p>
+              <p className="bkOndA">{t('Diversify with thoroughly vetted commercial real estate with the potential to generate income and grow in value.')}
+              </p>
+              <div className="dZGjWY">
+                <a className="gPmAng"href="investment-opportunities.html">{t('Open Investments')}</a>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className="duxOcS">
-            <div className="gAeGzz">
-              <div className="bPHxiG">
-                <div className="fQtwOd">
-                  <p className="cAyDCf">Access
-                  </p>
-                  <p className="jGZFMF">Private Market Offerings.
-                  </p>
-                </div>
+        <div className="duxOcS">
+          <div className="gAeGzz">
+            <div className="bPHxiG">
+              <div className="fQtwOd">
+                <p className="cAyDCf">{t('Access')}
+                </p>
+                <p className="jGZFMF">{t('Private Market Offerings.')}
+                </p>
               </div>
-              <div className="jCWujc">
-                <div className="fQtwOd">
-                  <p className="cAyDCf">Invest
-                  </p>
-                  <p className="jGZFMF">IN PRIVATE PLACEMENTS AND REAL ESTATE INVESTMENT TRUSTS (“REITS”)</p>
-                </div>
+            </div>
+            <div className="jCWujc">
+              <div className="fQtwOd">
+                <p className="cAyDCf">{t('Invest')}
+                </p>
+                <p className="jGZFMF">{t('IN PRIVATE PLACEMENTS AND REAL ESTATE INVESTMENT TRUSTS (“REITS”)')}</p>
               </div>
-              <div className="jRJUUs">
-                <div className="cwbiEW">
-                  <p className="cAyDCf">GAIN
-                  </p>
-                  <p className="jGZFMF">EXPOSURE TO  MORE DEALS.</p>
-                </div>
+            </div>
+            <div className="jRJUUs">
+              <div className="cwbiEW">
+                <p className="cAyDCf">{t('GAIN')}
+                </p>
+                <p className="jGZFMF">{t('EXPOSURE TO  MORE DEALS.')}</p>
               </div>
-              <div className="cMzbYy">
-                <a className="XzGWN" href="investment-options.html">Open Investments</a>
-              </div>
+            </div>
+            <div className="cMzbYy">
+              <a className="XzGWN" href="investment-options.html">{t('Open Investments')}</a>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="wrap">
-        <div className="content">
-          <main className="main">
-            <div className="fl-builder-content">
-              <div className="fl-row fl-row-fixed-width">
-                <div className="fl-row-content-wrap">
-                  <div className="fl-row-content fl-row-fixed-width">
-                    <div className="fl-col-group">
-                      <div className="fl-col">
-                        <div className="fl-col-content">
-                          <div className="fl-module fl-module-heading xlg">
-                            <div className="fl-module-content">
-                              <h1 className="fl-heading">
-                                <span className="fl-heading-text">Why invest with Origin?</span>
-                              </h1>
-                            </div>
-                          </div>
-                          <div className="fl-module lg">
-                            <div className="fl-module-content">
-                              <div className="fl-rich-text">
-                                <p className="text-center">We are on a mission to transform the way individuals invest in real estate.
-                                  <a className="utility-link" href="our-story.html">Learn more</a>
-                                </p>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="fl-col-group fl-col-group-equal-height fl-col-group-align-center">
-                      <div className="fl-col fl-col-small">
-                        <div className="fl-col-content">
-                          <div className="fl-module fl-module-heading">
-                            <div className="fl-module-content">
-                              <h1 className="fl-heading">
-                                <span className="fl-heading-text xxlg">28%</span>
-                              </h1>
-                            </div>
-                          </div>
-                          <div className="fl-module fl-module-heading header-bar-md">
-                            <div className="fl-module-content">
-                              <h3 className="fl-heading">
-                                <span className="fl-heading-text">Average Gross IRR**</span>
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="fl-col fl-col-small">
-                        <div className="fl-col-content">
-                          <div className="fl-module fl-module-heading">
-                            <div className="fl-module-content">
-                              <h1 className="fl-heading">
-                                <span className="fl-heading-text xxlg">$60M</span>
-                              </h1>
-                            </div>
-                          </div>
-                          <div className="fl-module fl-module-heading header-bar-md">
-                            <div className="fl-module-content">
-                              <h3 className="fl-heading">
-                                <span className="fl-heading-text">CEO Co-Investment</span>
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="fl-col fl-col-small">
-                        <div className="fl-col-content">
-                          <div className="fl-module fl-module-heading">
-                            <div className="fl-module-content">
-                              <h1 className="fl-heading">
-                                <span className="fl-heading-text xxlg">$2.5B</span>
-                              </h1>
-                            </div>
-                          </div>
-                          <div className="fl-module fl-module-heading header-bar-md">
-                            <div className="fl-module-content">
-                              <h3 className="fl-heading">
-                                <span className="fl-heading-text">Transactions Executed</span>
-                              </h3>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+      <main className="main">
+        <div className="fl-row-content fl-row-fixed-width">
+          <div className="">
+            <div className="fl-col">
+              <div className="fl-module fl-module-heading xlg">
+                <div className="fl-module-content">
+                  <h1 className="text-center">
+                    <span className="fl-heading-text">{t('Why invest with Origin?')}</span>
+                  </h1>
+                </div>
+              </div>
+              <div className="fl-module-content">
+                <p className="text-center">{t('We are on a mission to transform the way individuals invest in real estate. ')}
+                  <a className="" href="our-story.html">{t('Learn more')}</a>
+                </p>
+              </div>
+            </div>
+          </div>
+          <div className="fl-col-group fl-col-group-equal-height text-center">
+            <div className="fl-col fl-col-small">
+              <div className="fl-col-content">
+                <div className="fl-module-content">
+                  <h1 className="">
+                    <span className="fl-heading-text xxlg">28%</span>
+                  </h1>
+                </div>
+                <div className="fl-module-content">
+                  <h3 className="">{t('Average Gross IRR**')}</h3>
                 </div>
               </div>
             </div>
-          </main>
+            <div className="fl-col fl-col-small">
+              <div className="fl-col-content">
+                <div className="fl-module-content">
+                  <h1 className="">
+                    <span className="fl-heading-text xxlg">$60M</span>
+                  </h1>
+                </div>
+                <div className="fl-module-content">
+                  <h3 className="">{t('CEO Co-Investment')}</h3>
+                </div>
+              </div>
+            </div>
+            <div className="fl-col fl-col-small">
+              <div className="fl-col-content">
+                <div className="fl-module-content">
+                  <h1 className="">
+                    <span className="fl-heading-text xxlg">$2.5B</span>
+                  </h1>
+                </div>
+                <div className="fl-module-content">
+                  <h3 className="">{t('Transactions Executed')}</h3>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <main className="main mt-5">
+        <div className="fl-row-content fl-row-fixed-width">
+          <div className="">
+            <div className="fl-col">
+              <div className="fl-module fl-module-heading xlg text-center">
+                <div className="fl-module-content">                
+                  <h1><span className="fl-heading-text">{t('How PeerStreet works')}</span></h1>
+                </div>
+              </div>
+              <div className="fl-module-content text-center">
+                <h4>{t('It’s simple. Borrowers pay monthly interest on real estate loans, and you get your share of those payments as they are received. That is real estate debt investing.')}
+                </h4>
+              </div>
+            </div>
+          </div>
+          <div className="fl-col-group fl-col-group-equal-height text-center">
+            <div className="col">
+              <div className="fl-col-content">
+                <div className="fl-module-content">
+                  <img src={step1} alt="step one"/>
+                  <img className="arrow" src="https://assets.website-files.com/5e150becb578f4b1614f023f/5e87609c29ebdb30a43ac547_arrow.svg" alt=""/>
+                </div>
+                <div className="fl-module-content">
+                  <h3 className="fl-module-heading mt-0 mb-3">{t('Borrowers get loans')}</h3>
+                  <p>{t('Your investment gives lenders capital to support real estate borrowers.')}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="fl-col-content">
+                <div className="fl-module-content">
+                  <img src={step2} alt=""/>
+                  <img className="arrow" src="https://assets.website-files.com/5e150becb578f4b1614f023f/5e87609c29ebdb30a43ac547_arrow.svg" alt=""/>
+                </div>
+                <div className="fl-module-content">
+                  <h3 className="fl-module-heading mt-0 mb-3">{t('We collect payments')}</h3>
+                  <p>{t('Those borrowers pay monthly interest on their real estate loans.')}</p>
+                </div>
+              </div>
+            </div>
+            <div className="col">
+              <div className="fl-col-content">
+                <div className="fl-module-content">
+                  <img src={step3} alt="step three"/>
+                </div>
+                <div className="fl-module-content">
+                  <h3 className="fl-module-heading mt-0 mb-3">{t('You get paid')}</h3>
+                  <p>{t('You receive your share of those monthly payments.')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>        
+
+      <div className='pt-5 pb-5 bg-s3'>
+        <div className='container'>
+          <h2 className='fl-heading-text mb-5'>Quiero invertir, ¿qué hago?</h2>
+          <div className='d-flex flex-row'>
+            <div className='w-70-m w-40-l'>
+              <div className='d-flex mb-4 nl-container align-items-center'>
+                <div className='w-10 fs-5 mr-3'>1</div>
+                <div className='w-90'>
+                  <p className='mt-0 mb-1'>Regístrate como usuario.</p>
+                  <a className="btn btn-blue f6 pv2 f5-ns db tc grow" href="recursos/sign_up.html">Regístrate</a>
+                </div>
+              </div>
+              <div className='d-flex mb-4 nl-container align-items-center'>
+                <div className='w-10 fs-5 mr-3'>2</div>
+                <div className='w-90'>
+                  <p className='mb-1'>Conoce las oportunidades para invertir y elige en cuálesparticipar.</p>
+                  <a className="btn btn-light" href="proyectos.html">Opciones para invertir</a>
+                </div>
+              </div>
+              <div className='d-flex mb-4 nl-container align-items-center'>
+                <div className='w-10 fs-5 mr-3'>3</div>
+                <div className='w-90'>
+                  <p className='mv0'>Te daremos más información sobre cada proyecto que te interese e instrucciones para realizar tu inversión.</p>
+                </div>
+              </div>
+              <div className='d-flex mb-4 nl-container align-items-center'>
+                <div className='w-10 fs-5 mr-3'>4</div>
+                <div className='w-90'>
+                  <p className='mv0'>Invierte, entérate de los avances de los proyectos y recibetus ganancias.</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>

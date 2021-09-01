@@ -883,9 +883,7 @@ div.tribe-events-calendar-month__events>article.tribe_events_cat-offering-launch
 .tribe-events-calendar-month__body{
   background-color:#fff
 }
-#main{
-  margin-top:89px
-}
+
 .site-refresh p{
   
   font-size:1rem;
@@ -2488,10 +2486,7 @@ body.admin-bar #menu-cs-main-nav .dropdown-menu.show{
   .slim-nav{
   height:139px !important
 }
-#main{
-  margin-top:139px !important
-}
-.simple #main{
+.simple {
   margin-top:52px !important
 }
 .slim-nav nav{
@@ -15193,10 +15188,7 @@ body.admin-bar #menu-cs-main-nav .dropdown-menu.show{
   .slim-nav{
   height:139px !important
 }
-#main{
-  margin-top:139px !important
-}
-.simple #main{
+.simple{
   margin-top:52px !important
 }
 .slim-nav nav{
