@@ -212,8 +212,252 @@ const Home: React.FC = () => {
           </div>
         </div>
       </main>        
+      
+      <div className="container">
+        <div className="sc-bxivhb upmmy">
+          <div className="sc-bxivhb kfVDzu">
+            <div className="sc-htpNat dFMloS">
+              <div className="sc-bxivhb gnyMrl">
+                <div className="sc-htoDjs cjEsQP">
+                  <a className="sc-chPdSV cgTYkN" href="/investment-opportunity/193744">
+                    <img className="sc-iwsKbI fTHuJT" src="https://www.realtymogul.com/sites/default/files/styles/io_browse_page/public/mri_0_0.jpg?itok=0CVPylBr" alt=""/>
+                  </a>
+                </div>
+                <div className="sc-htoDjs hgjGUh">
+                  <p className="sc-kGXeez hlWnwG">Open for investment</p>
+                </div>
+              <div className="sc-bdVaJa dvdkfg">
+                <div className="sc-bdVaJa QYKnJ">
+                  <p className="sc-kGXeez gNWDmm">
+                    Nationwide
+                  </p>
+                </div>
+                <div className="sc-bdVaJa fLgokR">
+                  <p className="sc-kGXeez cTnXae">
+                    MogulREIT I
+                  </p>
+                </div>
+              <div className="sc-bdVaJa evkgqp">
+                <div className="sc-bxivhb VUgHi">
+                  <div className="sc-htoDjs fkJsUS">
+                    <p className="sc-kGXeez iTWuKL">
+                      $5K
+                    </p>
+                    <p className="sc-kGXeez dLPGoD">
+                      Minimum
+                    </p>
+                  </div>
+                  <div className="sc-htoDjs ZLaWg">
+                    <div className="sc-bxivhb gKEFyt">
+                      <p className="sc-kGXeez ifjPnA">
+                        Monthly
+                      </p>
+                      <div className="sc-htoDjs iXKSiJ">
+                        <span>
+                          <img className="sc-iwsKbI ClucN" src="/static/media/tooltip_icon.091e1161.svg" alt=""/>
+                        </span>
+                      </div>
+                    </div>
+                <p className="sc-kGXeez dLPGoD">
+                  Distributions
+                </p>
+                </div>
+                <div className="sc-htoDjs sYJTM">
+                <div className="sc-bxivhb gKEFyt">
+                <p className="sc-kGXeez iTWuKL">
+                  6.00%
 
-      <div className='pt-5 pb-5 bg-s3'>
+                </p>
+                <div className="sc-htoDjs iXKSiJ">
+                <span>
+                <img className="sc-iwsKbI ClucN" src="/static/media/tooltip_icon.091e1161.svg" alt=""/>
+                </span>
+                </div>
+                </div>
+                <p className="sc-kGXeez dLPGoD">
+                  Annualized Rate
+
+                </p>
+                </div>
+                </div>
+              </div>
+              <div className="sc-htoDjs fbsxOy">
+              <p className="sc-kGXeez bXpmEq">A Real Estate Investment Trust with the objectives to pay attractive and consistent cash distributions; and to preserve, protect, increase and return your capital contribution.
+
+              </p>
+              </div>
+              <div className="sc-htoDjs cWyFIK"/>
+              <div className="sc-htoDjs eBIylG">
+              <a className="sc-chPdSV fWWiwV" href=".">
+                View Details
+              </a>
+              </div>
+              </div>
+              </div>
+            </div>
+            <div className="sc-htpNat dFMloS">
+              <div className="sc-bxivhb gnyMrl">
+                <div className="sc-htoDjs cjEsQP">
+                  <a className="sc-chPdSV cgTYkN" href="/investment-opportunity/193744">
+                    <img className="sc-iwsKbI fTHuJT" src="https://www.realtymogul.com/sites/default/files/styles/io_browse_page/public/757_n._hudson.jpg?itok=EaYkTmBF" alt=""/>
+                  </a>
+                </div>
+                <div className="sc-htoDjs hgjGUh">
+                  <p className="sc-kGXeez hlWnwG">Open for investment</p>
+                </div>
+              <div className="sc-bdVaJa dvdkfg">
+                <div className="sc-bdVaJa QYKnJ">
+                  <p className="sc-kGXeez gNWDmm">
+                    Nationwide
+                  </p>
+                </div>
+                <div className="sc-bdVaJa fLgokR">
+                  <p className="sc-kGXeez cTnXae">
+                    MogulREIT I
+                  </p>
+                </div>
+              <div className="sc-bdVaJa evkgqp">
+                <div className="sc-bxivhb VUgHi">
+                  <div className="sc-htoDjs fkJsUS">
+                    <p className="sc-kGXeez iTWuKL">
+                      $5K
+                    </p>
+                    <p className="sc-kGXeez dLPGoD">
+                      Minimum
+                    </p>
+                  </div>
+                  <div className="sc-htoDjs ZLaWg">
+                    <div className="sc-bxivhb gKEFyt">
+                      <p className="sc-kGXeez ifjPnA">
+                        Monthly
+                      </p>
+                      <div className="sc-htoDjs iXKSiJ">
+                        <span>
+                          <img className="sc-iwsKbI ClucN" src="/static/media/tooltip_icon.091e1161.svg" alt=""/>
+                        </span>
+                      </div>
+                    </div>
+                <p className="sc-kGXeez dLPGoD">
+                  Distributions
+                </p>
+                </div>
+                <div className="sc-htoDjs sYJTM">
+                <div className="sc-bxivhb gKEFyt">
+                <p className="sc-kGXeez iTWuKL">
+                  6.00%
+
+                </p>
+                <div className="sc-htoDjs iXKSiJ">
+                <span>
+                <img className="sc-iwsKbI ClucN" src="/static/media/tooltip_icon.091e1161.svg" alt=""/>
+                </span>
+                </div>
+                </div>
+                <p className="sc-kGXeez dLPGoD">
+                  Annualized Rate
+
+                </p>
+                </div>
+                </div>
+              </div>
+              <div className="sc-htoDjs fbsxOy">
+              <p className="sc-kGXeez bXpmEq">A Real Estate Investment Trust with the objectives to pay attractive and consistent cash distributions; and to preserve, protect, increase and return your capital contribution.
+
+              </p>
+              </div>
+              <div className="sc-htoDjs cWyFIK"/>
+              <div className="sc-htoDjs eBIylG">
+              <a className="sc-chPdSV fWWiwV" href=".">
+                View Details
+              </a>
+              </div>
+              </div>
+              </div>
+            </div>
+            <div className="sc-htpNat dFMloS">
+              <div className="sc-bxivhb gnyMrl">
+                <div className="sc-htoDjs cjEsQP">
+                  <a className="sc-chPdSV cgTYkN" href="/investment-opportunity/193744">
+                    <img className="sc-iwsKbI fTHuJT" src="https://www.realtymogul.com/sites/default/files/styles/io_browse_page/public/mrii_0_0.jpg?itok=fLuX8MuM" alt=""/>
+                  </a>
+                </div>
+                <div className="sc-htoDjs hgjGUh">
+                  <p className="sc-kGXeez hlWnwG">Open for investment</p>
+                </div>
+              <div className="sc-bdVaJa dvdkfg">
+                <div className="sc-bdVaJa QYKnJ">
+                  <p className="sc-kGXeez gNWDmm">
+                    Nationwide
+                  </p>
+                </div>
+                <div className="sc-bdVaJa fLgokR">
+                  <p className="sc-kGXeez cTnXae">
+                    MogulREIT I
+                  </p>
+                </div>
+              <div className="sc-bdVaJa evkgqp">
+                <div className="sc-bxivhb VUgHi">
+                  <div className="sc-htoDjs fkJsUS">
+                    <p className="sc-kGXeez iTWuKL">
+                      $5K
+                    </p>
+                    <p className="sc-kGXeez dLPGoD">
+                      Minimum
+                    </p>
+                  </div>
+                  <div className="sc-htoDjs ZLaWg">
+                    <div className="sc-bxivhb gKEFyt">
+                      <p className="sc-kGXeez ifjPnA">
+                        Monthly
+                      </p>
+                      <div className="sc-htoDjs iXKSiJ">
+                        <span>
+                          <img className="sc-iwsKbI ClucN" src="/static/media/tooltip_icon.091e1161.svg" alt=""/>
+                        </span>
+                      </div>
+                    </div>
+                <p className="sc-kGXeez dLPGoD">
+                  Distributions
+                </p>
+                </div>
+                <div className="sc-htoDjs sYJTM">
+                <div className="sc-bxivhb gKEFyt">
+                <p className="sc-kGXeez iTWuKL">
+                  6.00%
+
+                </p>
+                <div className="sc-htoDjs iXKSiJ">
+                <span>
+                <img className="sc-iwsKbI ClucN" src="/static/media/tooltip_icon.091e1161.svg" alt=""/>
+                </span>
+                </div>
+                </div>
+                <p className="sc-kGXeez dLPGoD">
+                  Annualized Rate
+
+                </p>
+                </div>
+                </div>
+              </div>
+              <div className="sc-htoDjs fbsxOy">
+              <p className="sc-kGXeez bXpmEq">A Real Estate Investment Trust with the objectives to pay attractive and consistent cash distributions; and to preserve, protect, increase and return your capital contribution.
+
+              </p>
+              </div>
+              <div className="sc-htoDjs cWyFIK"/>
+              <div className="sc-htoDjs eBIylG">
+              <a className="sc-chPdSV fWWiwV" href=".">
+                View Details
+              </a>
+              </div>
+              </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className='p-5 bg-s3'>
         <div className='container'>
           <h2 className='fl-heading-text mb-5'>Quiero invertir, ¿qué hago?</h2>
           <div className='d-flex flex-row'>
