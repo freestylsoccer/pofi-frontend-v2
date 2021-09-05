@@ -5,6 +5,9 @@ import { DropdownProps, PositionProps, Position } from "./types";
 const getLeft = ({ position }: PositionProps) => {
   if (position === "top-right") {
     return "100%";
+  } 
+  if (position === "other") {
+    return "0%";
   }
   return "50%";
 };
@@ -12,6 +15,9 @@ const getLeft = ({ position }: PositionProps) => {
 const getBottom = ({ position }: PositionProps) => {
   if (position === "top" || position === "top-right") {
     return "100%";
+  }
+  if (position === "other") {
+    return "auto";
   }
   return "auto";
 };

@@ -1,5 +1,5 @@
 import React, { lazy } from 'react'
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Router, Route, Switch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import styled from 'styled-components/macro'
 import useEagerConnect from 'hooks/useEagerConnect'
@@ -36,18 +36,6 @@ const HeaderWrapper = styled.div`
   top: 0;
   z-index: 2;
 `
-const BodyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  
-  align-items: center;
-  flex: 1;
-  z-index: 1;
-  ${({ theme }) => theme.mediaQueries.sm} {
-    
-  }
-`
 
 const App: React.FC = () => {
   usePollBlockNumber()
@@ -62,7 +50,7 @@ const App: React.FC = () => {
       <HeaderWrapper>
        <Header />
       </HeaderWrapper>
-      <BodyWrapper>
+      
       <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
             <Route path="/" exact>
@@ -83,7 +71,6 @@ const App: React.FC = () => {
             <Route component={NotFound} />
           </Switch>
         </SuspenseWithChunkError>
-      </BodyWrapper>
     </Router>
   )
 }

@@ -4,6 +4,7 @@ import Text from "../Text/Text";
 import bunnyHeadMain from "./svg/bunnyhead-main.svg";
 import bunnyHeadMax from "./svg/bunnyhead-max.svg";
 import bunnyButt from "./svg/bunnybutt.svg";
+import circle from "./svg/circle.svg";
 
 interface SliderLabelProps {
   progress: string;
@@ -23,26 +24,24 @@ const getCursorStyle = ({ disabled = false }: DisabledProp) => {
 
 const getBaseThumbStyles = ({ isMax, disabled }: StyledInputProps) => `
   -webkit-appearance: none;
-  background-image: url(${isMax ? bunnyHeadMax : bunnyHeadMain});
+  background-image: url(${isMax ? circle : circle});
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: transparent;
   border: 0;
   cursor: ${getCursorStyle};
   width: 24px;
-  height: 32px;
+  height: 24px;
+  bottom: 0px;
   filter: ${disabled ? "grayscale(100%)" : "none"};
-  transform: translate(-2px, -2px);
-  transition: 200ms transform;
-
-  &:hover {
-    transform: ${disabled ? "scale(1) translate(-2px, -2px)" : "scale(1.1) translate(-3px, -3px)"};
-  }
+  
+  
 `;
 
 export const SliderLabelContainer = styled.div`
   bottom: 0;
   position: absolute;
-  left: 14px;
-  width: calc(100% - 30px);
+  left: 0px;
 `;
 
 export const SliderLabel = styled(Text)<SliderLabelProps>`
@@ -55,7 +54,6 @@ export const SliderLabel = styled(Text)<SliderLabelProps>`
 `;
 
 export const BunnyButt = styled.div<DisabledProp>`
-  background: url(${bunnyButt}) no-repeat;
   height: 32px;
   filter: ${({ disabled }) => (disabled ? "grayscale(100%)" : "none")};
   position: absolute;
@@ -64,7 +62,7 @@ export const BunnyButt = styled.div<DisabledProp>`
 
 export const BunnySlider = styled.div`
   position: absolute;
-  left: 14px;
+  left: 5px;
   width: calc(100% - 14px);
 `;
 
@@ -90,8 +88,8 @@ export const BarBackground = styled.div<DisabledProp>`
   background-color: ${({ theme, disabled }) => theme.colors[disabled ? "textDisabled" : "inputSecondary"]};
   height: 2px;
   position: absolute;
-  top: 18px;
-  width: 100%;
+  bottom: 15px;
+  width: 99%;
 `;
 
 export const BarProgress = styled.div<DisabledProp>`
@@ -99,5 +97,5 @@ export const BarProgress = styled.div<DisabledProp>`
   filter: ${({ disabled }) => (disabled ? "grayscale(100%)" : "none")};
   height: 10px;
   position: absolute;
-  top: 18px;
+  bottom: 11.5px;
 `;

@@ -1,13 +1,15 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import useScrollPosition from '@react-hook/window-scroll'
 import { NavLink } from 'react-router-dom'
 import styled, { css } from 'styled-components/macro'
 import useTheme from 'hooks/useTheme'
-import { Menu as SideBarMenu, X } from 'react-feather'
+import { Menu as SideBarMenu} from 'react-feather'
 import { useTranslation } from 'contexts/Localization'
 import UserMenu from 'components/Menu/UserMenu'
+import PreferencesMenu from 'components/Menu/PreferencesMenu'
 import Logo from '../../assets/svg/logo.svg'
 import LogoDark from '../../assets/svg/logo_white.svg'
+import useSideMenu from './useSideMenu'
 
 const HeaderFrame = styled.div<{ showBackground: boolean }>`
   display: grid;
@@ -127,13 +129,11 @@ const HeaderLinks = styled.div<{ isShown: boolean }>`
         }
       `};
 `
-const SideBarWrapper = styled.div`
-  vertical-align: middle;
-  padding-top: 1rem;
-  display: block;
-	${({ theme }) => theme.mediaQueries.md} {
-    display: none;
-  }
+const HeaderLinksWrapper = styled.div`
+  display: flex;
+  padding: 0;
+  align-items: center;
+  justify-content: flex-end;
 `
 const NavToggle = styled.button`
 	justify-self: self-end;
@@ -147,11 +147,6 @@ const NavToggle = styled.button`
 	${({ theme }) => theme.mediaQueries.md} {
     display: none;
   }
-`
-const NavClose = styled(NavToggle)`
-  position: absolute;
-  top: 16px;
-  left: 16px;
 `
 const activeClassName = 'ACTIVE'
 
@@ -189,20 +184,18 @@ export default function Header() {
   const { t } = useTranslation()
 	const scrollY = useScrollPosition()
 	const [isShown, setIsShown] = useState(false)
-
+  const boxRef = useRef(null);
+  const boxOutsideClick = useSideMenu(boxRef);
+  
   return (
     <HeaderFrame showBackground={scrollY > 45}>
 			<Title href="/">
         <UniIcon>
-          <img width="24px" src={theme.isDark ? LogoDark : Logo} alt="logo" />
+          <img width="24px" src={theme.isDark ? LogoDark : Logo} alt="logo"/>
         </UniIcon>
       </Title>
-			<HeaderLinks isShown={isShown}>
-				<SideBarWrapper>
-          <NavClose onClick={() => setIsShown(!isShown)}>
-            <X strokeWidth="3" color="#000" />
-          </NavClose>
-        </SideBarWrapper>
+      <HeaderLinksWrapper ref={boxRef}>
+			<HeaderLinks isShown={isShown && !boxOutsideClick}>
         <StyledNavLink id="swap-nav-link" to="/markets" onClick={() => setIsShown(!isShown)}>
           {t('Markets')}
         </StyledNavLink>
@@ -225,11 +218,13 @@ export default function Header() {
           </StyledNavLink>
           <HeaderControls>
             <UserMenu />
+            <PreferencesMenu />
           </HeaderControls>
 			</HeaderLinks>
       <NavToggle onClick={() => setIsShown(!isShown)}>
-        <SideBarMenu size="30" strokeWidth="3" />
+        <SideBarMenu size="30" strokeWidth="3" color={theme.isDark ? "#fff" : "#000"} />
       </NavToggle>
+      </HeaderLinksWrapper>
     </HeaderFrame>
   )
 }

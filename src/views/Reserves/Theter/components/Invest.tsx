@@ -1,5 +1,5 @@
 import React, { useCallback, useState } from 'react'
-import { Currency, currencyEquals, ETHER, TokenAmount, WETH } from '@pancakeswap/sdk'
+import { TokenAmount } from '@pancakeswap/sdk'
 import { Button } from '@pancakeswap/uikit'
 import { RouteComponentProps, Link } from 'react-router-dom'
 import styled from 'styled-components/macro'
@@ -8,9 +8,8 @@ import { useTranslation } from 'contexts/Localization'
 import { useGasPrice } from 'state/user/hooks'
 import { useCurrency } from 'hooks/Tokens'
 import { useMintState, useDerivedMintInfo, useMintActionHandlers } from 'state/mint/hooks'
-import { getUSDT2Addres } from 'utils/addressHelpers'
-import useTokenBalance, { FetchStatus } from 'hooks/useTokenBalance'
-import { getFullDisplayBalance, getBalanceNumber } from 'utils/formatBalance'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getBalanceNumber } from 'utils/formatBalance'
 import { maxAmountSpend } from 'utils/maxAmountSpend'
 import { Field } from 'state/mint/actions'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
@@ -18,7 +17,6 @@ import { useTransactionAdder, useIsTransactionPending } from 'state/transactions
 import { LENDING_POOL_ADDRESS } from 'config/constants'
 import { calculateGasMargin, getRouterContractv2 } from 'utils'
 import CurrencyInputPanel from 'components/CurrencyInputPanelv2'
-import { currencyId } from 'utils/currencyId'
 import Dots from 'components/Loader/Dots'
 import ConnectWalletButton from 'components/ConnectWalletButton'
 import { tryParseAmount } from 'state/swap/hooks'
@@ -26,10 +24,22 @@ import { CurrencyLogo } from 'components/Logo'
 import PageLoader from 'components/Loader/PageLoader'
 
 
-const Container = styled.div.attrs((props) => ({
+const Container = styled.div.attrs(() => ({
   className: 'container',
 }))`
   color: ${({ theme }) => theme.colors.text1};
+`
+const BodyWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 120px 16px 0px 16px;
+  align-items: center;
+  flex: 1;
+  z-index: 1;
+  ${({ theme }) => theme.mediaQueries.sm} {
+    padding: 6rem 16px 16px 16px;
+  }
 `
 
 export default function Invest({
@@ -178,35 +188,37 @@ history,
   }
 
   if(!account) {
-    return ( 
-      <Container>
-        <div className="row">
-          <div className="col">
-            <Button
-              type="button"
-              as={Link}
-              to="/theter-reserve"
-            >
-              back
-            </Button>
+    return (
+      <BodyWrapper>
+        <Container>
+          <div className="row">
+            <div className="col">
+              <Button
+                type="button"
+                as={Link}
+                to="/theter-reserve"
+              >
+                back
+              </Button>
+            </div>
           </div>
-        </div>
-        <div className="row">
-          <div className="col">
-            <div className="basic-form">
-              <div className="caption">
-                <h6>{t('Please connect a wallet')}</h6>
-                <p>
-                  {t('We couldn’t detect a wallet. Connect a wallet to deposit and see your balance grow.')}
-                </p>
-              </div>
-              <div className="text-center mb-3">
-                <ConnectWalletButton />
+          <div className="row">
+            <div className="col">
+              <div className="basic-form">
+                <div className="caption">
+                  <h6>{t('Please connect a wallet')}</h6>
+                  <p>
+                    {t('We couldn’t detect a wallet. Connect a wallet to deposit and see your balance grow.')}
+                  </p>
+                </div>
+                <div className="text-center mb-3">
+                  <ConnectWalletButton />
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </Container>
+        </Container>
+      </BodyWrapper>
     )
   }
 
@@ -215,7 +227,7 @@ history,
   }
 
   return (
-      <>
+      <BodyWrapper>
       {account && fetchStatus === "success" && currencyA !== null && getBalanceNumber(balance, currencyA.decimals) < 1 ? (
         <Container>
           <div className="row">
@@ -249,7 +261,7 @@ history,
           </div>
           <div className="row">
             <div className="col">
-              <form className="basic-form">
+              <div className="basic-form">
                 <div className="caption">
                   <h6>{t('How much would you like to deposit?')}</h6>
                   <p>
@@ -284,7 +296,7 @@ history,
                       <span>{t('Insufficient balance, choose a lower amount')}</span>
                     )}
                 </div>
-              </form>
+              </div>
             </div>
           </div>
         </Container>
@@ -519,6 +531,6 @@ history,
       ) : (
         <PageLoader />
       )}
-    </>
+    </BodyWrapper>
   )
 }
