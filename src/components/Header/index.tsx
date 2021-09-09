@@ -169,7 +169,7 @@ const StyledNavLink = styled(NavLink).attrs({
   &.${activeClassName} {
     font-weight: 600;
     justify-content: center;
-    border-bottom: 0.25rem solid #000;
+    border-bottom: 0.25rem solid ${({ theme }) => theme.colors.text1};
     color: ${({ theme }) => theme.colors.text1};
   }
 

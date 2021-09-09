@@ -80,20 +80,20 @@ const SectionIRigth = styled.div`
     padding-right:25%;
   }
   @media screen and (min-width:832px) {
-    padding-bottom:100px;
+    padding-bottom:3rem;
     padding-top:5rem;
     padding-left:5%;
     padding-right:5%;
   }
   @media screen and (min-width:1024px) {
-    padding-bottom:120px;
+    padding-bottom:5rem;
     padding-top:8rem;
     padding-left:5%;
     padding-right:5%;
   }
   @media screen and (min-width:1920px) {
-    padding-bottom:180px;
-    padding-top:220px;
+    padding-bottom:5rem;
+    padding-top:8rem;
     padding-left:5%;
     padding-right:5%;
   }
@@ -303,20 +303,20 @@ const SectionILeft = styled.div`
   }
 
   @media screen and (min-width:832px) {
-    padding-bottom:100px;
+    padding-bottom:3rem;
     padding-top:15rem;
     padding-left:5%;
     padding-right:5%;
   }
   @media screen and (min-width:1024px) {
-    padding-bottom:160px;
+    padding-bottom:5rem;
     padding-top:8rem;
     padding-left:5%;
     padding-right:5%;
   }
   @media screen and (min-width:1920px) {
-    padding-bottom:220px;
-    padding-top:220px;
+    padding-bottom:5rem;
+    padding-top:8rem;
     padding-left:5%;
     padding-right:5%;
   }
@@ -759,7 +759,7 @@ const Home: React.FC = () => {
               <SectionIRigthSubIIPI>{t('Diversify with thoroughly vetted commercial real estate with the potential to generate income and grow in value.')}
               </SectionIRigthSubIIPI>
               <SectionIRigthSubIII>
-                <Button type="button" scale="sm" >{t('Open Investments')}</Button>
+                <Button type="button" scale="md" >{t('Open Investments')}</Button>
               </SectionIRigthSubIII>
             </SectionIRigthSubII>
           </SectionIRigthSubI>
@@ -786,7 +786,7 @@ const Home: React.FC = () => {
               </SectionILeftSubIISubSubI>
             </SectionILeftSubIV>
             <SectionILeftSubIISubSubII>
-              <Button type="button" scale="sm" >{t('Open Investments')}</Button>
+              <Button type="button" scale="md" >{t('Open Investments')}</Button>
             </SectionILeftSubIISubSubII>
           </SectionILeftSubI>
         </SectionILeft>

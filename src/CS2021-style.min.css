@@ -704,14 +704,7 @@ img {
 	font-size:16px;
 	-webkit-font-smoothing:antialiased
 	}
-	body {
 	
-	font-size:1.125rem;
-	font-weight:400;
-	line-height:1.6;
-	color:#0e223a;
-	background-color:#f6f6f6
-	}
 	.container-fluid .row-fluid .page-center {
 	float:none;
 	max-width:1360px;

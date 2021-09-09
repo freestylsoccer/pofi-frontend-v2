@@ -42,6 +42,96 @@ const BodyWrapper = styled.div`
   }
 `
 
+const StepTitle = styled.span`
+  color: ${({ theme }) => theme.colors.primary};
+  font-size: 1.25rem;
+`
+const ConfirmationHeader = styled.div`
+  background: ${({ theme }) => theme.colors.bg2};
+  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  padding: 15px;
+  border-radius: 2px;
+`
+
+const ConfirmationBody = styled.form`
+  width: 100%;
+  max-width: 380px;
+  background: ${({ theme }) => theme.colors.bg2};
+  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  padding: 15px;
+  border-radius: 2px;
+  margin-bottom: 1rem !important;
+`
+const HeaderCardsWrapper = styled.div`
+  border: 1px solid ${({ theme }) => theme.colors.bg3};
+  width: 100%;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.2s ease 0s;
+`
+const HeaderCardActive = styled.div`
+  border-right: 1px solid ${({ theme }) => theme.colors.bg3};
+  background: ${({ theme }) => theme.colors.gradients.blue};
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 20px;
+  font-size: 12px;
+  flex: 1 1 0%;
+  font-weight: 400;
+  transition: all 0.2s ease 0s;
+`
+const HeaderCardDisabled = styled.div`
+  border-right: 1px solid ${({ theme }) => theme.colors.bg3};
+  background: ${({ theme }) => theme.colors.backgroundDisabled};
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 20px;
+  font-size: 12px;
+  flex: 1 1 0%;
+  font-weight: 400;
+  transition: all 0.2s ease 0s;
+`
+const HeaderCardLoading = styled.div`
+  border-right: 1px solid ${({ theme }) => theme.colors.bg3};
+  background: ${({ theme }) => theme.colors.gradients.gold};
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 20px;
+  font-size: 12px;
+  flex: 1 1 0%;
+  font-weight: 400;
+  transition: all 0.2s ease 0s;
+`
+const HeaderCardFinished = styled.div`
+  border-right: 1px solid ${({ theme }) => theme.colors.bg3};
+  background: ${({ theme }) => theme.colors.success};
+  color: ${({ theme }) => theme.colors.text1};
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 20px;
+  font-size: 12px;
+  flex: 1 1 0%;
+  font-weight: 400;
+  transition: all 0.2s ease 0s;
+`
+
 export default function Invest({
   match: {
   params: { currencyIdA, currencyIdB },
@@ -241,8 +331,8 @@ history,
             <div className="col">
               <div className="basic-form">
                 <div className="caption">
-                  <h6>{t('Your balance is zero')}</h6>
-                  <p>
+                  <StepTitle>{t('Your balance is zero')}</StepTitle>
+                  <p className="mt-3">
                     {t('Your balance of %name% is 0. Transfer %name% to your wallet to be able to deposit' , { name: currencyA.name })}
                   </p>
                 </div>
@@ -263,8 +353,8 @@ history,
             <div className="col">
               <div className="basic-form">
                 <div className="caption">
-                  <h6>{t('How much would you like to deposit?')}</h6>
-                  <p>
+                  <StepTitle>{t('How much would you like to deposit?')}</StepTitle>
+                  <p className="mt-3">
                     {t('Please enter an amount you would like to deposit. The maximum amount you can deposit is shown below.')}
                   </p>
                 </div>
@@ -312,11 +402,11 @@ history,
             </div>
             <div className="confirmation-view">
               <div className="caption">
-                <h6>Deposit overview</h6>
-                <p>These are your transaction details. Make sure to check if this is correct before submitting.</p>
+                <StepTitle>Deposit overview</StepTitle>
+                <p className="mt-3">These are your transaction details. Make sure to check if this is correct before submitting.</p>
               </div>
               <div className="confirmation-view-content-inner">
-                <div className="conformation-view-content">
+                <ConfirmationHeader>
                   <div className="row-amount-field">
                     <div className="row-title-inner">
                       <div className="row-title">Amount</div>
@@ -335,47 +425,47 @@ history,
                       </div>
                     </div>
                   </div>
-                </div>
+                </ConfirmationHeader>
               </div>              
                 <div className="conformation-view-actions-inner">
-                  <div className="actions-wrapper">
+                  <HeaderCardsWrapper>
                     <div className="action-wrapper-buttons">
                     {isPending || attemptingTxn ? (
                       <>
-                        <button type="button" className="actions-wrapper-button actions-wrapper-button-loading" disabled>
+                        <HeaderCardLoading>
                           <p>{t('Loading')}</p>
-                        </button>
-                        <button type="button" className="actions-wrapper-button actions-wrapper-button-loading" disabled>                            
+                        </HeaderCardLoading>
+                        <HeaderCardLoading>                            
                           <p>{t('Loading')}</p>
-                        </button>
+                        </HeaderCardLoading>
                       </>
                       ) : (
                         <>
                           {txHash === '' ? (
                             <>
-                              <button type="button" className="actions-wrapper-button actions-wrapper-button-active" disabled>
+                              <HeaderCardActive>
                                 <p>{t('Deposit')}</p>
-                              </button>
-                              <button type="button" className="actions-wrapper-button" disabled>                            
+                              </HeaderCardActive>
+                              <HeaderCardDisabled>
                                 <p>{t('Finished')}</p>
-                              </button>
+                              </HeaderCardDisabled>
                             </>
                           ) : (
                             <>
-                              <button type="button" className="actions-wrapper-button actions-wrapper-button-finished" disabled>                            
+                              <HeaderCardFinished>
                                 <p>{t('Deposit')}</p>
-                              </button>
-                              <button type="button" className="actions-wrapper-button actions-wrapper-button-finished" disabled>                            
+                              </HeaderCardFinished>
+                              <HeaderCardFinished>
                                 <p>{t('Finished')}</p>
-                              </button>
+                              </HeaderCardFinished>
                             </>
                           )}
-                        </>                        
+                        </>
                       )}                      
                     </div>
-                  </div>
+                  </HeaderCardsWrapper>
                 </div>
-                <form className="actions-execute mb-3">
+                <ConfirmationBody>
                   <div className="txtop-info">
                     <div className="txtop-info-inner">
                       <div className="txtop-info-left-inner">                        
@@ -443,7 +533,7 @@ history,
                       </div>
                     </div>
                   </div>
-                </form>
+                </ConfirmationBody>
             </div>
           </Container>
         </>
@@ -459,11 +549,11 @@ history,
             </div>
             <div className="confirmation-view">
               <div className="caption">
-                <h6>Deposit overview</h6>
-                <p>These are your transaction details. Make sure to check if this is correct before submitting.</p>
+                <StepTitle>Deposit overview</StepTitle>
+                <p className="mt-3">These are your transaction details. Make sure to check if this is correct before submitting.</p>
               </div>
               <div className="confirmation-view-content-inner">
-                <div className="conformation-view-content">
+                <ConfirmationHeader>
                   <div className="row-amount-field">
                     <div className="row-title-inner">
                       <div className="row-title">Amount</div>
@@ -482,29 +572,29 @@ history,
                       </div>
                     </div>
                   </div>
-                </div>
+                </ConfirmationHeader>
               </div>
               <div className="conformation-view-actions-inner">
-                <div className="actions-wrapper">
+                <HeaderCardsWrapper>
                   <div className="action-wrapper-buttons">
-                    <button type="button" className="actions-wrapper-button actions-wrapper-button-active" disabled>
+                    <HeaderCardActive>
                       <p>Approve</p>
-                    </button>
-                    <button type="button" className="actions-wrapper-button" disabled>
+                    </HeaderCardActive>
+                    <HeaderCardDisabled>
                       <p>Deposit</p>
-                    </button>
-                    <button type="button" className="actions-wrapper-button" disabled>
+                    </HeaderCardDisabled>
+                    <HeaderCardDisabled>
                       <p>Finished</p>
-                    </button>
+                    </HeaderCardDisabled>
                   </div>
-                </div>
+                </HeaderCardsWrapper>
               </div>
-              <form className="actions-execute mb-3">
+              <ConfirmationBody>
                 <div className="txtop-info">
                   <div className="txtop-info-inner">
                     <div className="txtop-info-left-inner">
                       <div className="txtop-info-title">Approve</div>
-                      <span>Please approve before depositing</span>
+                      <span className="fs-14">Please approve before depositing</span>
                     </div>
                     <div className="txtop-info-right-inner">
                       <div className="txtop-info-button-inner">                          
@@ -524,7 +614,7 @@ history,
                     </div>
                   </div>
                 </div>
-              </form>
+              </ConfirmationBody>
             </div>
           </Container>
         </>

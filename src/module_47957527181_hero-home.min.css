@@ -2470,7 +2470,7 @@ Reserve Section Style
 ========================================================================== */
 .reserve {
   width: 100%;
-  margin-top: 3.5rem;
+  margin-top: 4.5rem;
 }
 .cover {
   background-image:
@@ -2669,23 +2669,27 @@ Reserve Section Style
 }
 
 .NnZDJ {
-  display: none;
-  position: relative;
+  display: none !important;;
+  /*position: relative;*/
   visibility: visible;
   opacity: 1;
   z-index: auto;
   overflow: visible;
   box-sizing: content-box;
   transition: all 0s ease 0s;
+  position:-webkit-sticky;
+  position: sticky;  
+  z-index: 1;
+  top: 61px;
 }
 @media screen and (min-width: 640px) {
   .NnZDJ {
-      display: none;
+      display: none !important;
   }
 }
 @media screen and (min-width: 832px) {
   .NnZDJ {
-      display: block;
+      display: flex !important;
   }
 }
 
@@ -2732,7 +2736,7 @@ Reserve Section Style
 .ctGDLs {
   font-size: 10px;
   max-width: 260px;
-  min-width: 200px;
+  min-width: 100px;
   margin-bottom: 0px;
   padding: 15px 20px;
   border-width: 3px 0px 0px;
@@ -3096,9 +3100,7 @@ Reserve Section Style
   width: 100%;
   overflow: hidden;
 }
-.caption  h6{
-  color:rgb(182, 80, 158) !important;
-}
+
 .row-amount-field {
   font-size: 14px;
   display: flex;
@@ -3198,7 +3200,6 @@ Reserve Section Style
 
 .amount-field-input input {
   padding: 15px 5px 14px 0px;
-  color: rgb(56, 61, 81);
   border: none !important;
   background: transparent;
   font-family: roboto-font, sans-serif;
@@ -3209,7 +3210,6 @@ Reserve Section Style
 }
 
 .amount-field-right-inner .max-button {
-  color: rgb(182, 80, 158);
   font-weight: 600;
   font-size: 14px;
   white-space: nowrap;
@@ -3228,7 +3228,6 @@ Reserve Section Style
 }
 
 .conformation-view-content {
-  color: rgb(56, 61, 81);
   background: rgb(255, 255, 255);
   border: 1px solid rgb(56, 61, 81);
   padding: 15px;
@@ -3245,7 +3244,6 @@ Reserve Section Style
 }
 
 .txtop-info {
-  color: rgb(56, 61, 81);
   padding: 15px;
 }
 
@@ -3262,8 +3260,7 @@ Reserve Section Style
   text-align: left;
 }
 .txtop-info-title {
-  color: rgb(182, 80, 158);
-  font-size: 14px;
+  font-size: 16px;
   display: flex;
   align-items: flex-start;
   -webkit-box-pack: justify;
@@ -3279,7 +3276,6 @@ Reserve Section Style
 .actions-execute {
   width: 100%;
   max-width: 380px;
-  color: rgb(56, 61, 81);
   background: rgb(255, 255, 255);
   border: 1px solid rgb(56, 61, 81);
   padding: 15px;
@@ -3303,7 +3299,6 @@ Reserve Section Style
 .actions-wrapper-button {
   border-right: 1px solid rgb(255, 255, 255);
   background: rgb(255, 255, 255);
-  color: rgb(56, 61, 81);
   display: flex;
   -webkit-box-align: center;
   align-items: center;
@@ -3356,7 +3351,7 @@ Reserve Section Style
 }
 
 .txtop-info-title span {
-  font-size: 12px !important;
+  font-size: 14px !important;
   word-break: break-word !important;
   margin: 0px !important;
   box-sizing: border-box !important;
@@ -3377,4 +3372,15 @@ Reserve Section Style
 
 .amount-input:focus {
     outline-width: 0;
+}
+
+.fs-14 {
+  font-size: 14px !important;
+}
+
+.sticky {
+	position:-webkit-sticky;
+	position:sticky;
+  z-index: 1;
+  top: 3.5rem;
 }
