@@ -76,3 +76,7 @@ export const getUSDT2Addres = () => {
 export const getAusdtAddress = () => {
   return getAddress(tokens.ausdt.address)
 }
+
+export const getTusdAddress = () => {
+  return getAddress(tokens.tusd.address)
+}

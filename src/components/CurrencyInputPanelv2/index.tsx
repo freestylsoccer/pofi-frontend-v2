@@ -58,7 +58,7 @@ export default function CurrencyInputPanel({
                 {account && (
                   <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
                     {!hideBalance && !!currency && selectedCurrencyBalance.fetchStatus === 'success'
-                      ? t('%amount%', { amount: getFullDisplayBalance(selectedCurrencyBalance.balance, 6) ?? '' })
+                      ? t('%amount%', { amount: getFullDisplayBalance(selectedCurrencyBalance.balance, currency.decimals) ?? '' })
                       : ' -'}
                   </Text>                  
                 )}

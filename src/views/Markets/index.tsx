@@ -327,7 +327,7 @@ export default function Markets() {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Link href="/theter-reserve">
+                    <Link href="/theter">
                       <Button type="button" scale="md">{t('View Details')}</Button>
                     </Link>
                   </div>
@@ -399,7 +399,9 @@ export default function Markets() {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/trueusd">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>

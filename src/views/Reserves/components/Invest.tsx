@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { TokenAmount } from '@pancakeswap/sdk'
 import { Button } from '@pancakeswap/uikit'
-import { RouteComponentProps, Link } from 'react-router-dom'
+import { RouteComponentProps, Link, useHistory } from 'react-router-dom'
 import styled from 'styled-components/macro'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
@@ -41,7 +41,6 @@ const BodyWrapper = styled.div`
     padding: 6rem 16px 16px 16px;
   }
 `
-
 const StepTitle = styled.span`
   color: ${({ theme }) => theme.colors.primary};
   font-size: 1.25rem;
@@ -52,7 +51,6 @@ const ConfirmationHeader = styled.div`
   padding: 15px;
   border-radius: 2px;
 `
-
 const ConfirmationBody = styled.form`
   width: 100%;
   max-width: 380px;
@@ -211,6 +209,8 @@ history,
   const defaultApproval = useApproveCallback(defaultAmountParsed, LENDING_POOL_ADDRESS)
 
   const addTransaction = useTransactionAdder()
+  const rtr = getRouterContractv2(chainId, library, account)
+  // console.log(rtr)
   
   async function onAdd() {
     if (!chainId || !library || !account) return
@@ -270,11 +270,11 @@ history,
     onFieldAInput('')
     setTxHash('')
   }, [onFieldAInput, txHash])
-
+  // const navHistory = useHistory();
   function handleCancelation(){
     onFieldAInput('')
     setTxHash('')
-    history.push('/theter-reserve')
+    history.goBack()
   }
 
   if(!account) {

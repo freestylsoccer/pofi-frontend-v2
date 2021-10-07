@@ -5,7 +5,7 @@ import SimpleReactLightbox from 'simple-react-lightbox'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useReserveLiquidity from 'hooks/useReserveLiquidity'
-import { getUSDT2Addres } from 'utils/addressHelpers'
+import { getTusdAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { PROTOCOL_DATA_PROVIDER_ADDRESS } from 'config/constants'
 import { Button, Slider } from 'uikit'
@@ -18,7 +18,7 @@ import MyComponent from '../components/MyComponent'
 
 const elements = [
   {
-    src: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
+    src: 'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
     caption: 'Lorem ipsum dolor sit amet',
     height: 'auto',
   },
@@ -39,65 +39,6 @@ const elements = [
   }, 
 ]
 
-const Container = styled.div.attrs(() => ({
-  className: 'container',
-}))`
-  color: ${({ theme }) => theme.colors.text1};
-`
-const InfoTextPrimary = styled.span`
-  color: ${({ theme }) => theme.colors.text1};
-`
-const InfoTextSecondary = styled.p`
-  color: ${({ theme }) => theme.colors.text2};
-`
-const PackageTitle = styled.div`
-  padding: 0.5rem;
-  color: ${({ theme }) => theme.colors.text1};
-`
-const Price = styled.span`
-  font-size: 30px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.blue5};
-`
-const TextLeft = styled.div`
-  display: flex !important;
-  padding-left: 13px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 28px;
-  margin: 0px;
-  text-align: left !important;
-  color: ${({ theme }) => theme.colors.text2};
-`
-const TextRight = styled.div`
-  text-align: right !important;
-  padding-right: 1rem !important;
-  color: ${({ theme }) => theme.colors.text1};
-`
-const Pricing = styled.div.attrs(() => ({
-  className: 'single-pricing active mt-30',
-}))`
-  background: ${({ theme }) => theme.colors.bg0};
-  border: solid 0.25px ${({ theme }) => theme.colors.text4};
-`
-const CardH3 = styled.h5`
-  color: ${({ theme }) => theme.colors.text2};
-`
-const CardSpan = styled.span`
-  color: ${({ theme }) => theme.colors.text3};
-`
-const AchievementsCard = styled.div.attrs(() => ({
-  className: 'card',
-}))`
-  background: ${({ theme }) => theme.colors.bg0};
-  color: ${({ theme }) => theme.colors.blue5};
-  :hover {
-    transform: scale(1.02);
-    transition: 0.5s;
-    background-color: #fff;
-    box-shadow: 0px 5px 50px -8px #ddd;
-  }
-`
 const Subtitle = styled.span`
   font-size: .75rem;
   text-transform: uppercase;
@@ -333,11 +274,11 @@ const ReturnsInfoText = styled.div`
   color: ${({ theme }) => theme.colors.text3};
 `
 
-const Theter: React.FC = () => {
-  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, getUSDT2Addres())
+const TrueUsd: React.FC = () => {
+  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, getTusdAddress())
   const { t } = useTranslation()
   
-  const targeAmount = 650000 - getBalanceNumber(liquidity, 6)
+  const targeAmount = 650000 - getBalanceNumber(liquidity, 18)
   const maxAmount = 750000
   const progress = (getBalanceNumber(liquidity, 6) / 650000) * 100
   const [amount, setAmount] = useState(100)
@@ -353,7 +294,7 @@ const Theter: React.FC = () => {
   return(
     <>
       <section className="reserve">
-        <div className="cover">
+        <div className="cover-tusd">
           <div className="bg-reserve">
             <div className="container content-end">
               <div className="col-xl-5 col-lg-6">
@@ -424,7 +365,7 @@ const Theter: React.FC = () => {
                 <Button
                   type="button"
                   as={Link}
-                  to="/add/0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2"
+                  to="/add/0x8Fc70e05A0071Bbca3020366182162a319418ECa"
                 >
                 {t('Invest')}
                 </Button>
@@ -617,4 +558,4 @@ const Theter: React.FC = () => {
     </>
   )
 }
-export default Theter
+export default TrueUsd

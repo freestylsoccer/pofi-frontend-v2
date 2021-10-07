@@ -19,7 +19,8 @@ const Home = lazy(() => import('./views/Home'))
 const NotFound = lazy(() => import('./views/NotFound'))
 const Markets = lazy(() => import('./views/Markets'))
 const Theter = lazy(() => import('./views/Reserves/Theter'))
-const Invest = lazy(() => import('./views/Reserves/Theter/components/Invest'))
+const TrueUsd = lazy(() => import('./views/Reserves/TrueUsd'))
+const Invest = lazy(() => import('./views/Reserves/components/Invest'))
 
 // This config is required for number formatting
 BigNumber.config({
@@ -56,15 +57,18 @@ const App: React.FC = () => {
             <Route path="/" exact>
               <Home />
             </Route>
-            <Route path="/theter-reserve" exact>
+            <Route path="/theter" exact>
               <Theter />
+            </Route>
+            <Route path="/trueusd" exact>
+              <TrueUsd />
             </Route>
             <Route path="/markets" exact>
               <Markets />
             </Route>
 
             {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
-            <Route exact path="/theter-reserve/add/:currencyIdA" component={Invest} />
+            <Route exact path="/add/:currencyIdA" component={Invest} />
 
             {/* Redirect */}
             {/* 404 */}

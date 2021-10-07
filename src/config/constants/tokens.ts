@@ -35,7 +35,22 @@ export const BUSD: { [chainId: number]: Token } = {
 
 export const WBNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB')
 export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
-export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059fF775485246999027B3197955', 18, 'USDT', 'Tether USD')
+export const USDT : { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET, 
+    '0x55d398326f99059fF775485246999027B3197955',
+    6,
+    'USDT',
+    'Tether USD'
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2',
+    6,
+    'USDT',
+    'Tether USD'
+  ),
+}
 export const BTCB = new Token(ChainId.MAINNET, '0x7130d2A12B9BCbFAe4f2634d864A1Ee1Ce3Ead9c', 18, 'BTCB', 'Binance BTC')
 export const UST = new Token(
   ChainId.MAINNET,
@@ -57,6 +72,13 @@ export const USDC = new Token(
   18,
   'USDC',
   'Binance-Peg USD Coin',
+)
+export const TUSD = new Token(
+  ChainId.TESTNET,
+  '0x8Fc70e05A0071Bbca3020366182162a319418ECa',
+  18,
+  'TUSD',
+  'True USD',
 )
 
 const tokens = {
@@ -986,7 +1008,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '0x55d398326f99059fF775485246999027B3197955',
-      97: '0xE02dF9e3e622DeBdD69fb838bB799E3F168902c5',
+      97: '0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2',
     },
     decimals: 18,
     projectLink: 'https://tether.to/',
@@ -1706,7 +1728,7 @@ const tokens = {
     symbol: 'TUSD',
     address: {
       56: '0x14016E85a25aeb13065688cAFB43044C2ef86784',
-      97: '',
+      97: '0x8Fc70e05A0071Bbca3020366182162a319418ECa',
     },
     decimals: 18,
     projectLink: 'https://www.trueusd.com/',
@@ -1922,7 +1944,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '',
-      97: '0x080De04372D5f1E317d492645b923f6286C7eC86',
+      97: '0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2',
     },
     decimals: 6,
     projectLink: 'http://localhost:3000/',
@@ -1931,7 +1953,7 @@ const tokens = {
     symbol: 'aUSDT',
     address: {
       56: '',
-      97: '0xA95B3C688B55534bEcDBf62aebA21A0FC6F23262',
+      97: '0x83F55093a3980ce803C32c464Cd56845e605f027',
     },
     decimals: 6,
     projectLink: 'http://localhost:3000/',

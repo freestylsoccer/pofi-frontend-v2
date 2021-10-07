@@ -1,9 +1,20 @@
 import React from 'react'
 import { SRLWrapper, useLightbox } from 'simple-react-lightbox'
 import { Button } from 'uikit'
-import elements from './elements'
 
-export default function MyComponent() {
+interface IElements {
+  src: string,
+  caption: string,
+  height: string
+}
+
+interface myComponentProps {
+  elements: IElements[]
+}
+
+export default function MyComponent({
+  elements
+}: myComponentProps) {
   const { openLightbox } = useLightbox()
   return (
     <div className="col-lg-5 px-0">

@@ -2,8 +2,8 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC } from './tokens'
 
 export const ROUTER_ADDRESS = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
-export const LENDING_POOL_ADDRESS = '0xa91B261ED3c307a50f7a3370558A0ad393784B7f'
-export const PROTOCOL_DATA_PROVIDER_ADDRESS = "0x3c1cCF441c10Cb61aC94B5099315d3c9D8BA3d8a"
+export const LENDING_POOL_ADDRESS = '0xaBe42e64ede7B8195C9517Ed7A635C1aDCE7dA6E'
+export const PROTOCOL_DATA_PROVIDER_ADDRESS = "0xE389a29022Ce07a0E43f331d9d2d0ca57d0aC81B"
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -12,7 +12,7 @@ type ChainTokenList = {
 
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CAKE[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT, BTCB, UST, ETH, USDC],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], CAKE[ChainId.MAINNET], BUSD[ChainId.MAINNET], USDT[ChainId.MAINNET], BTCB, UST, ETH, USDC],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 
@@ -41,15 +41,15 @@ export const SUGGESTED_BASES: ChainTokenList = {
 
 // used to construct the list of all pairs we consider by default in the frontend
 export const BASES_TO_TRACK_LIQUIDITY_FOR: ChainTokenList = {
-  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DAI, BUSD[ChainId.MAINNET], USDT],
+  [ChainId.MAINNET]: [WETH[ChainId.MAINNET], DAI, BUSD[ChainId.MAINNET], USDT[ChainId.MAINNET]],
   [ChainId.TESTNET]: [WETH[ChainId.TESTNET], CAKE[ChainId.TESTNET], BUSD[ChainId.TESTNET]],
 }
 
 export const PINNED_PAIRS: { readonly [chainId in ChainId]?: [Token, Token][] } = {
   [ChainId.MAINNET]: [
     [CAKE[ChainId.MAINNET], WBNB],
-    [BUSD[ChainId.MAINNET], USDT],
-    [DAI, USDT],
+    [BUSD[ChainId.MAINNET], USDT[ChainId.MAINNET]],
+    [DAI, USDT[ChainId.MAINNET]],
   ],
 }
 
