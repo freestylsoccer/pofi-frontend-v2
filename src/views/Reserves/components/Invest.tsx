@@ -175,6 +175,11 @@ history,
   const [attemptingTxn, setAttemptingTxn] = useState<boolean>(false) // clicked confirm
 
   const [txHash, setTxHash] = useState<string>('')
+  
+  // modal and loading
+  const [cdAttemptingTxn, setCdAttemptingTxn] = useState<boolean>(false) // clicked confirm
+  
+  const [cdTxHash, setCdTxHash] = useState<string>('') // credit delegation transaciton hash
 
   // get formatted amounts
   const formattedAmounts = {
@@ -260,8 +265,16 @@ history,
         }
       })
   }
-  const isPending = useIsTransactionPending(txHash)
 
+  async function onCreditDelegation() {
+    setAttemptingTxn(true)
+    setCdTxHash("dsfsdfjshdf")
+    setAttemptingTxn(false)
+  }
+
+  let isPending = useIsTransactionPending(txHash)
+  isPending = useIsTransactionPending(cdTxHash)
+  
   const handleDismissConfirmation = useCallback(() => {
     // if there was a tx hash, we want to clear the input
     if (txHash) {
@@ -315,7 +328,8 @@ history,
   if(fetchStatus !== "success"  && currencyA === null) {
     <PageLoader />
   }
-
+  console.log(txHash)
+  console.log(cdTxHash)
   return (
       <BodyWrapper>
       {account && fetchStatus === "success" && currencyA !== null && getBalanceNumber(balance, currencyA.decimals) < 1 ? (
@@ -430,36 +444,53 @@ history,
                 <div className="conformation-view-actions-inner">
                   <HeaderCardsWrapper>
                     <div className="action-wrapper-buttons">
-                    {isPending || attemptingTxn ? (
-                      <>
-                        <HeaderCardLoading>
-                          <p>{t('Loading')}</p>
-                        </HeaderCardLoading>
-                        <HeaderCardLoading>                            
-                          <p>{t('Loading')}</p>
-                        </HeaderCardLoading>
-                      </>
+                      {isPending || attemptingTxn ? (
+                        <>
+                          <HeaderCardLoading>
+                            <p>{t('Loading')}</p>
+                          </HeaderCardLoading>
+                          <HeaderCardLoading>                            
+                            <p>{t('Loading')}</p>
+                          </HeaderCardLoading>
+                          <HeaderCardLoading>
+                            <p>{t('Loading')}</p>
+                          </HeaderCardLoading>
+                        </>
+                      ) : cdTxHash === '' && txHash === ''  ? (
+                        <>
+                          <HeaderCardActive>
+                            <p>{t('Credit Delegation')}</p>
+                          </HeaderCardActive>
+                          <HeaderCardDisabled>
+                            <p>{t('Deposit')}</p>
+                          </HeaderCardDisabled>
+                          <HeaderCardDisabled>
+                            <p>{t('Finished')}</p>
+                          </HeaderCardDisabled>
+                        </>
+                      ) : txHash === '' && cdTxHash !== '' ? (
+                        <>
+                          <HeaderCardFinished>
+                            <p>{t('Credit Delegation')}</p>
+                          </HeaderCardFinished>
+                          <HeaderCardActive>
+                            <p>{t('Deposit')}</p>
+                          </HeaderCardActive>
+                          <HeaderCardDisabled>
+                            <p>{t('Finished')}</p>
+                          </HeaderCardDisabled>
+                        </>
                       ) : (
                         <>
-                          {txHash === '' ? (
-                            <>
-                              <HeaderCardActive>
-                                <p>{t('Deposit')}</p>
-                              </HeaderCardActive>
-                              <HeaderCardDisabled>
-                                <p>{t('Finished')}</p>
-                              </HeaderCardDisabled>
-                            </>
-                          ) : (
-                            <>
-                              <HeaderCardFinished>
-                                <p>{t('Deposit')}</p>
-                              </HeaderCardFinished>
-                              <HeaderCardFinished>
-                                <p>{t('Finished')}</p>
-                              </HeaderCardFinished>
-                            </>
-                          )}
+                          <HeaderCardFinished>
+                            <p>{t('Credit Delegation')}</p>
+                          </HeaderCardFinished>
+                          <HeaderCardFinished>
+                            <p>{t('Deposit')}</p>
+                          </HeaderCardFinished>
+                          <HeaderCardFinished>
+                            <p>{t('Finished')}</p>
+                          </HeaderCardFinished>
                         </>
                       )}                      
                     </div>
@@ -468,26 +499,17 @@ history,
                 <ConfirmationBody>
                   <div className="txtop-info">
                     <div className="txtop-info-inner">
-                      <div className="txtop-info-left-inner">                        
+                      <div className="txtop-info-left-inner">
                         {isPending || attemptingTxn ? (
                           <>
-                            <div className="txtop-info-title">{t('Deposit')}</div>
                             <Dots>{t('Loading')}</Dots>
                           </>
+                        ) : cdTxHash === '' && txHash === ''  ? (
+                          <span>{t('Please submit to Credit Delegation')}</span>
+                        ) : txHash === '' && cdTxHash !== '' ? (
+                          <span>{t('Please submit to deposit')}</span>
                         ) : (
-                          <>
-                            {txHash === '' ? (
-                              <>
-                                <div className="txtop-info-title">{t('Deposit')}</div>
-                                <span>{t('Please submit to deposit')}</span>
-                              </>
-                            ) : (
-                              <>
-                                <div className="txtop-info-title">{t('Finished')}</div>
-                                <span>{t('success')}</span>
-                              </>
-                            )}
-                          </>
+                          <span>{t('success')}</span>
                         )}
                       </div>
                       <div className="txtop-info-right-inner">
@@ -496,38 +518,42 @@ history,
                               <Button
                                 width='100%'
                                 type="button"
-                                onClick={() => {
-                                  onAdd()
-                                }}
                                 disabled={isPending || attemptingTxn}
                               >
                                 <Dots>{t('Loading')}</Dots>
                               </Button>
-                            ) : (
-                              <>
-                                {txHash === '' ? (
-                                  <Button
-                                    width='100%'
-                                    type="button"
-                                    onClick={() => {
-                                      onAdd()
-                                    }}
-                                    disabled={attemptingTxn}
-                                  >
-                                    {t('Deposit')}
-                                  </Button>
-                                  ) : (
-                                    <Button
-                                      width='100%'
-                                      type="button"
-                                      as={Link}
-                                      to="/markets"
-                                      disabled={isPending || attemptingTxn}
-                                    >
-                                      {t('Markets')}
-                                    </Button>
-                                  )}
-                              </>
+                            ) : cdTxHash === '' && txHash === ''  ? (
+                              <Button
+                                width='100%'
+                                type="button"
+                                onClick={() => {
+                                  onCreditDelegation()
+                                }}
+                                disabled={attemptingTxn}
+                              >
+                                {t('Credit Delegation')}
+                              </Button>
+                            ) : txHash === '' && cdTxHash !== '' ? (
+                              <Button
+                                width='100%'
+                                type="button"
+                                onClick={() => {
+                                  onAdd()
+                                }}
+                                disabled={attemptingTxn}
+                              >
+                                {t('Deposit')}
+                              </Button>
+                            ): (
+                              <Button
+                                width='100%'
+                                type="button"
+                                as={Link}
+                                to="/markets"
+                                disabled={isPending || attemptingTxn}
+                              >
+                                {t('Markets')}
+                              </Button>
                             )}
                         </div>
                       </div>
@@ -580,6 +606,9 @@ history,
                     <HeaderCardActive>
                       <p>Approve</p>
                     </HeaderCardActive>
+                    <HeaderCardDisabled>
+                      <p>Credit Delegation</p>
+                    </HeaderCardDisabled>
                     <HeaderCardDisabled>
                       <p>Deposit</p>
                     </HeaderCardDisabled>

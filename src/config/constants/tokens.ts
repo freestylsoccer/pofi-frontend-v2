@@ -1958,6 +1958,15 @@ const tokens = {
     decimals: 6,
     projectLink: 'http://localhost:3000/',
   },
+  stabledebttoken: {
+    symbol: 'stableDebtUSDT',
+    address: {
+      56: '',
+      97: '0x082ce3547c7b1D204A20b99541c86B01dd9Cc880',
+    },
+    decimals: 6,
+    projectLink: 'http://localhost:3000/',
+  }
 }
 
 export default tokens
