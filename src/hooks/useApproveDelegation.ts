@@ -4,15 +4,15 @@ import { Trade, TokenAmount, CurrencyAmount, ETHER } from '@pancakeswap/sdk'
 import { useCallback, useMemo } from 'react'
 import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { ROUTER_ADDRESS } from '../config/constants'
-import useTokenAllowance from './useTokenAllowance'
+import useBorrowAllowance from './useBorrowAllowance'
 import { Field } from '../state/swap/actions'
 import { useTransactionAdder, useHasPendingApproval } from '../state/transactions/hooks'
 import { computeSlippageAdjustedAmounts } from '../utils/prices'
 import { calculateGasMargin } from '../utils'
-import { useTokenContract } from './useContract'
+import { useStableDebtTokenContract } from './useContract'
 import { useCallWithGasPrice } from './useCallWithGasPrice'
 
-export enum ApprovalState {
+export enum ApprovalDelegationState {
   UNKNOWN,
   NOT_APPROVED,
   PENDING,
@@ -20,37 +20,37 @@ export enum ApprovalState {
 }
 
 // returns a variable indicating the state of the approval and a function which approves if necessary or early returns
-export function useApproveDelegationCallback(
+export function useApproveDelegation(
   amountToApprove?: CurrencyAmount,
   spender?: string,
-): [ApprovalState, () => Promise<void>] {
+): [ApprovalDelegationState, () => Promise<void>] {
   const { account } = useActiveWeb3React()
   const { callWithGasPrice } = useCallWithGasPrice()
   const token = amountToApprove instanceof TokenAmount ? amountToApprove.token : undefined
-  const currentAllowance = useTokenAllowance(token, account ?? undefined, spender)
+  const currentAllowance = useBorrowAllowance(token, account ?? undefined, spender) // cambiar por borrowAllowance
   const pendingApproval = useHasPendingApproval(token?.address, spender)
 
   // check the current approval status
-  const approvalState: ApprovalState = useMemo(() => {
-    if (!amountToApprove || !spender) return ApprovalState.UNKNOWN
-    if (amountToApprove.currency === ETHER) return ApprovalState.APPROVED
+  const approvalDelegationState: ApprovalDelegationState = useMemo(() => {
+    if (!amountToApprove || !spender) return ApprovalDelegationState.UNKNOWN
+    if (amountToApprove.currency === ETHER) return ApprovalDelegationState.APPROVED
     // we might not have enough data to know whether or not we need to approve
-    if (!currentAllowance) return ApprovalState.UNKNOWN
+    if (!currentAllowance) return ApprovalDelegationState.UNKNOWN
 
     // amountToApprove will be defined if currentAllowance is
     return currentAllowance.lessThan(amountToApprove)
       ? pendingApproval
-        ? ApprovalState.PENDING
-        : ApprovalState.NOT_APPROVED
-      : ApprovalState.APPROVED
+        ? ApprovalDelegationState.PENDING
+        : ApprovalDelegationState.NOT_APPROVED
+      : ApprovalDelegationState.APPROVED
   }, [amountToApprove, currentAllowance, pendingApproval, spender])
 
-  const tokenContract = useTokenContract(token?.address)
+  const tokenContract = useStableDebtTokenContract(token?.address)
   const addTransaction = useTransactionAdder()
 
-  const approve = useCallback(async (): Promise<void> => {
-    if (approvalState !== ApprovalState.NOT_APPROVED) {
-      console.error('approve was called unnecessarily')
+  const approveDelegation = useCallback(async (): Promise<void> => {
+    if (approvalDelegationState !== ApprovalDelegationState.NOT_APPROVED) {
+      console.error('approve delegation was called unnecessarily')
       return
     }
     if (!token) {
@@ -69,22 +69,22 @@ export function useApproveDelegationCallback(
     }
 
     if (!spender) {
-      console.error('no spender')
+      console.error('no delegatee')
       return
     }
 
     let useExact = false
 
-    const estimatedGas = await tokenContract.estimateGas.approve(spender, MaxUint256).catch(() => {
+    const estimatedGas = await tokenContract.estimateGas.approveDelegation(spender, MaxUint256).catch(() => {
       // general fallback for tokens who restrict approval amounts
       useExact = true
-      return tokenContract.estimateGas.approve(spender, amountToApprove.raw.toString())
+      return tokenContract.estimateGas.approveDelegation(spender, amountToApprove.raw.toString())
     })
 
     // eslint-disable-next-line consistent-return
     return callWithGasPrice(
       tokenContract,
-      'approve',
+      'approveDelegation',
       [spender, useExact ? amountToApprove.raw.toString() : MaxUint256],
       {
         gasLimit: calculateGasMargin(estimatedGas),
@@ -92,15 +92,15 @@ export function useApproveDelegationCallback(
     )
       .then((response: TransactionResponse) => {
         addTransaction(response, {
-          summary: `Approve ${amountToApprove.currency.symbol}`,
+          summary: `Approve Delegation ${amountToApprove.currency.symbol}`,
           approval: { tokenAddress: token.address, spender },
         })
       })
       .catch((error: Error) => {
-        console.error('Failed to approve token', error)
+        console.error('Failed to approve delegation token', error)
         throw error
       })
-  }, [approvalState, token, tokenContract, amountToApprove, spender, addTransaction, callWithGasPrice])
+  }, [approvalDelegationState, token, tokenContract, amountToApprove, spender, addTransaction, callWithGasPrice])
 
-  return [approvalState, approve]
+  return [approvalDelegationState, approveDelegation]
 }

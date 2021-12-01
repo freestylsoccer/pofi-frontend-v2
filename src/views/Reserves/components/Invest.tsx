@@ -230,10 +230,10 @@ history,
     const method = router.deposit
 
     const args = [
+      project,
       currencyIdA,
       parsedAmountA.raw.toString(),
       account,
-      0,
     ]
     const value = null
 
@@ -276,13 +276,14 @@ history,
     if (!chainId || !library || !account) return
     const contract = getMintableContract(currencyIdA, chainId, library, account)
 
-    console.log(contract);
-
     const estimate = contract.estimateGas.mint
     const method = contract.mint
 
+    const amountToMint = 10000
+    const exp = 10
+
     const args = [
-      "10000000000000000000000",
+      amountToMint * (exp ** currencyA.decimals),
     ]
     const value = null
 
@@ -315,8 +316,8 @@ history,
       })
   }
 
-  let isPending = useIsTransactionPending(txHash)
-  isPending = useIsTransactionPending(cdTxHash)
+  const isPending = useIsTransactionPending(txHash)
+  
   
   const handleDismissConfirmation = useCallback(() => {
     // if there was a tx hash, we want to clear the input
@@ -438,16 +439,7 @@ history,
                             <p>{t('Loading')}</p>
                           </HeaderCardLoading>
                         </>
-                      ) : cdTxHash === '' && txHash === ''  ? (
-                        <>
-                          <HeaderCardActive>
-                            <p>{t('Faucet')}</p>
-                          </HeaderCardActive>
-                          <HeaderCardDisabled>
-                            <p>{t('Finished')}</p>
-                          </HeaderCardDisabled>
-                        </>
-                      ) : txHash === '' && cdTxHash !== '' ? (
+                      ) : txHash === '' ? (
                         <>
                           <HeaderCardFinished>
                             <p>{t('Faucet')}</p>
@@ -477,7 +469,7 @@ history,
                           <>
                             <Dots>{t('Loading')}</Dots>
                           </>
-                        ) : cdTxHash === '' && txHash === ''  ? (
+                        ) : txHash === ''  ? (
                           <span>{t('Faucet')}</span>
                         ) : (
                           <span>{t('Success')}</span>
@@ -493,7 +485,7 @@ history,
                               >
                                 <Dots>{t('Loading')}</Dots>
                               </Button>
-                            ) : (
+                            ): txHash === '' ? (
                               <Button
                                 width='100%'
                                 type="button"
@@ -503,6 +495,14 @@ history,
                                 disabled={attemptingTxn}
                               >
                                 {t('Faucet')}
+                              </Button>
+                            ) : (
+                              <Button
+                                width='100%'
+                                type="button"
+                                disabled
+                              >
+                                {t('Success')}
                               </Button>
                             )}
                         </div>
@@ -599,61 +599,49 @@ history,
                   </div>
                 </ConfirmationHeader>
               </div>              
-                <div className="conformation-view-actions-inner">
-                  <HeaderCardsWrapper>
-                    <div className="action-wrapper-buttons">
-                      {isPending || attemptingTxn ? (
-                        <>
-                          <HeaderCardLoading>
-                            <p>{t('Loading')}</p>
-                          </HeaderCardLoading>
-                          <HeaderCardLoading>                            
-                            <p>{t('Loading')}</p>
-                          </HeaderCardLoading>
-                          <HeaderCardLoading>
-                            <p>{t('Loading')}</p>
-                          </HeaderCardLoading>
-                        </>
-                      ) : cdTxHash === '' && txHash === ''  ? (
-                        <>
-                          <HeaderCardActive>
-                            <p>{t('Credit Delegation')}</p>
-                          </HeaderCardActive>
-                          <HeaderCardDisabled>
-                            <p>{t('Deposit')}</p>
-                          </HeaderCardDisabled>
-                          <HeaderCardDisabled>
-                            <p>{t('Finished')}</p>
-                          </HeaderCardDisabled>
-                        </>
-                      ) : txHash === '' && cdTxHash !== '' ? (
-                        <>
-                          <HeaderCardFinished>
-                            <p>{t('Credit Delegation')}</p>
-                          </HeaderCardFinished>
-                          <HeaderCardActive>
-                            <p>{t('Deposit')}</p>
-                          </HeaderCardActive>
-                          <HeaderCardDisabled>
-                            <p>{t('Finished')}</p>
-                          </HeaderCardDisabled>
-                        </>
-                      ) : (
-                        <>
-                          <HeaderCardFinished>
-                            <p>{t('Credit Delegation')}</p>
-                          </HeaderCardFinished>
-                          <HeaderCardFinished>
-                            <p>{t('Deposit')}</p>
-                          </HeaderCardFinished>
-                          <HeaderCardFinished>
-                            <p>{t('Finished')}</p>
-                          </HeaderCardFinished>
-                        </>
-                      )}                      
-                    </div>
-                  </HeaderCardsWrapper>
-                </div>
+              <div className="conformation-view-actions-inner">
+                <HeaderCardsWrapper>
+                  <div className="action-wrapper-buttons">
+                    {isPending || attemptingTxn ? (
+                      <>
+                        <HeaderCardLoading>
+                          <p>{t('Loading')}</p>
+                        </HeaderCardLoading>
+                        <HeaderCardLoading>
+                          <p>{t('Loading')}</p>
+                        </HeaderCardLoading>
+                        <HeaderCardLoading>
+                          <p>{t('Loading')}</p>
+                        </HeaderCardLoading>
+                      </>
+                    ) : txHash === '' ? (
+                      <>
+                        <HeaderCardFinished>
+                          <p>{t('Approve')}</p>
+                        </HeaderCardFinished>
+                        <HeaderCardActive>
+                          <p>{t('Deposit')}</p>
+                        </HeaderCardActive>
+                        <HeaderCardDisabled>
+                          <p>{t('Finished')}</p>
+                        </HeaderCardDisabled>
+                      </>
+                    ) : (
+                      <>
+                        <HeaderCardFinished>
+                          <p>{t('Approve')}</p>
+                        </HeaderCardFinished>
+                        <HeaderCardFinished>
+                          <p>{t('Deposit')}</p>
+                        </HeaderCardFinished>
+                        <HeaderCardFinished>
+                          <p>{t('Finished')}</p>
+                        </HeaderCardFinished>
+                      </>
+                    )}                      
+                  </div>
+                </HeaderCardsWrapper>
+              </div>
                 <ConfirmationBody>
                   <div className="txtop-info">
                     <div className="txtop-info-inner">
@@ -662,9 +650,7 @@ history,
                           <>
                             <Dots>{t('Loading')}</Dots>
                           </>
-                        ) : cdTxHash === '' && txHash === ''  ? (
-                          <span>{t('Please submit to Credit Delegation')}</span>
-                        ) : txHash === '' && cdTxHash !== '' ? (
+                        ) : txHash === '' ? (
                           <span>{t('Please submit to deposit')}</span>
                         ) : (
                           <span>{t('success')}</span>
@@ -680,18 +666,7 @@ history,
                               >
                                 <Dots>{t('Loading')}</Dots>
                               </Button>
-                            ) : cdTxHash === '' && txHash === ''  ? (
-                              <Button
-                                width='100%'
-                                type="button"
-                                onClick={() => {
-                                  onCreditDelegation()
-                                }}
-                                disabled={attemptingTxn}
-                              >
-                                {t('Credit Delegation')}
-                              </Button>
-                            ) : txHash === '' && cdTxHash !== '' ? (
+                            ) : txHash === '' ? (
                               <Button
                                 width='100%'
                                 type="button"
@@ -764,9 +739,6 @@ history,
                     <HeaderCardActive>
                       <p>Approve</p>
                     </HeaderCardActive>
-                    <HeaderCardDisabled>
-                      <p>Credit Delegation</p>
-                    </HeaderCardDisabled>
                     <HeaderCardDisabled>
                       <p>Deposit</p>
                     </HeaderCardDisabled>

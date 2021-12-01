@@ -365,7 +365,7 @@ const TrueUsd: React.FC = () => {
                 <Button
                   type="button"
                   as={Link}
-                  to="/add/0x8Fc70e05A0071Bbca3020366182162a319418ECa"
+                  to="/add/0xEcDa5Bf2f0C2bc1B5E5EaEC7a0474EFD151EEB2a/0x7ce91Ca900845BB09C3aa6819e204F247148ea51"
                 >
                 {t('Invest')}
                 </Button>
