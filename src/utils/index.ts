@@ -9,7 +9,7 @@ import { ROUTER_ADDRESS, LENDING_POOL_ADDRESS } from '../config/constants'
 import { BASE_BSC_SCAN_URLS } from '../config'
 import { TokenAddressMap } from '../state/lists/hooks'
 import { abi as LendingPoolABI } from '../config/abi/LendingPool.json'
-
+import MintableERC20 from '../config/abi/mintableerc20.json'
 // returns the checksummed address if the address is valid, otherwise returns false
 export function isAddress(value: any): string | false {
   try {
@@ -101,6 +101,10 @@ export function escapeRegExp(string: string): string {
 }
 export function getRouterContractv2(_: number, library: Web3Provider, account?: string): Contract {
   return getContract(LENDING_POOL_ADDRESS, LendingPoolABI, library, account)
+}
+
+export function getMintableContract(address: string, _: number, library: Web3Provider, account?: string): Contract {
+  return getContract(address, MintableERC20, library, account)
 }
 
 export function isTokenOnList(defaultTokens: TokenAddressMap, currency?: Currency): boolean {

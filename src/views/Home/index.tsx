@@ -2,7 +2,7 @@ import React from 'react'
 import { MapPin, DollarSign, TrendingUp } from 'react-feather'
 import { useTranslation } from 'contexts/Localization'
 import styled from 'styled-components'
-import { Button } from 'uikit'
+import { Link, Button } from 'uikit'
 import myVideo from 'assets/video/myvideo.mp4'
 import step1 from 'assets/svg/step1.svg'
 import step2 from 'assets/svg/step2.svg'
@@ -732,7 +732,9 @@ const Home: React.FC = () => {
                                     <h1 className="mb-auto">{t('Welcome to the future of real estate investing.')}</h1>
                                     <h3 className="mt-3 subtitle">{t('You deserve a better way to invest in real estate Simple, low-cost, and more powerful than ever Powered by Blockchain Technology.')}</h3>
                                     <div>
-                                      <Button type="button" scale="md" >{t('Open Investments')}</Button>
+                                      <Link href="/markets">
+                                        <Button type="button" scale="md" >{t('Open Investments')}</Button>
+                                      </Link>
                                     </div>
                                   </div>
                                 </div>
@@ -759,7 +761,9 @@ const Home: React.FC = () => {
               <SectionIRigthSubIIPI>{t('Diversify with thoroughly vetted commercial real estate with the potential to generate income and grow in value.')}
               </SectionIRigthSubIIPI>
               <SectionIRigthSubIII>
-                <Button type="button" scale="md" >{t('Open Investments')}</Button>
+                <Link href="/markets">
+                  <Button type="button" scale="md" >{t('Open Investments')}</Button>
+                </Link>
               </SectionIRigthSubIII>
             </SectionIRigthSubII>
           </SectionIRigthSubI>
@@ -974,7 +978,9 @@ const Home: React.FC = () => {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/theter">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>
@@ -1044,7 +1050,9 @@ const Home: React.FC = () => {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/trueusd">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>
@@ -1123,9 +1131,12 @@ const Home: React.FC = () => {
         </div>
       </div>
 
-      <div className="mt-3 text-center">
+      { /*
+        <div className="mt-3 text-center">
         <Button type="button" scale="md">{t('Open Investments')}</Button>
       </div>
+      */
+      }
 
       <div className='p-5 bg-s3'>
         <div className='container'>
@@ -1145,7 +1156,9 @@ const Home: React.FC = () => {
                 <SectionIVNum>2</SectionIVNum>
                 <div className='w-90'>
                   <SectionIVP1mb1>{t('Learn about the opportunities to invest and choose which ones to participate in.')}</SectionIVP1mb1>
-                  <Button type="button" scale="md">{t('Open Investments')}</Button>
+                  <Link href="/markets">
+                    <Button type="button" scale="md">{t('Open Investments')}</Button>
+                  </Link>
                 </div>
               </div>
               <div className='d-flex mb-4 nl-container align-items-center'>

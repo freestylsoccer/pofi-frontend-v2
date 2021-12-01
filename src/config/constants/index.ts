@@ -2,8 +2,8 @@ import { ChainId, JSBI, Percent, Token, WETH } from '@pancakeswap/sdk'
 import { BUSD, DAI, USDT, BTCB, CAKE, WBNB, UST, ETH, USDC } from './tokens'
 
 export const ROUTER_ADDRESS = '0x10ED43C718714eb63d5aA57B78B54704E256024E'
-export const LENDING_POOL_ADDRESS = '0xaBe42e64ede7B8195C9517Ed7A635C1aDCE7dA6E'
-export const PROTOCOL_DATA_PROVIDER_ADDRESS = "0xE389a29022Ce07a0E43f331d9d2d0ca57d0aC81B"
+export const LENDING_POOL_ADDRESS = '0x5930f463a1BD784E7d67a21679488e165DB04378'
+export const PROTOCOL_DATA_PROVIDER_ADDRESS = "0xff562c0cf7B7B61178A558bf1E6BE83Bb6419801"
 
 // a list of tokens by chain
 type ChainTokenList = {
@@ -93,3 +93,10 @@ export const BLOCKED_ADDRESSES: string[] = [
 export { default as farmsConfig } from './farms'
 export { default as poolsConfig } from './pools'
 export { default as ifosConfig } from './ifo'
+
+export const PROJECT_DAI = "0x0e48B61B4517cC38b5fa05aBd9eD281A4bC2321F"
+export const PROJECT_TUSD = "0x5f18e1c347890B8F145f616BCCa111056B19CF1d"
+export const PROJECT_USDC = "0x0967D766AE11cFF946eC87567269374Ecd1541b7"
+export const PROJECT_USDT = "0x93a5E88d04aa5907e41b355341D929136A4344C3"
+export const PROJECT_SUSD = "0x21576343173a013acA62A86C95BA65D3dFe7C7A8"
+export const PROJECT_BUSD = "0xFe849353932cF14c68A3485a69854da8bb8c7b01"

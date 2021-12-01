@@ -68,7 +68,7 @@ const App: React.FC = () => {
             </Route>
 
             {/* Using this format because these components use routes injected props. We need to rework them with hooks */}
-            <Route exact path="/add/:currencyIdA" component={Invest} />
+            <Route exact path="/add/:currencyIdA/:currencyIdB" component={Invest} />
 
             {/* Redirect */}
             {/* 404 */}

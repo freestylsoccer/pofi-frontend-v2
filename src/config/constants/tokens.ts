@@ -45,7 +45,7 @@ export const USDT : { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2',
+    '0xa2C103d6733799DfB169E150A2FC4307CB61848A',
     6,
     'USDT',
     'Tether USD'
@@ -1008,7 +1008,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '0x55d398326f99059fF775485246999027B3197955',
-      97: '0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2',
+      97: '0xa2C103d6733799DfB169E150A2FC4307CB61848A',
     },
     decimals: 18,
     projectLink: 'https://tether.to/',
@@ -1944,7 +1944,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '',
-      97: '0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2',
+      97: '0xa2C103d6733799DfB169E150A2FC4307CB61848A',
     },
     decimals: 6,
     projectLink: 'http://localhost:3000/',

@@ -7,7 +7,7 @@ import { useTranslation } from 'contexts/Localization'
 import useReserveLiquidity from 'hooks/useReserveLiquidity'
 import { getUSDT2Addres } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { PROTOCOL_DATA_PROVIDER_ADDRESS } from 'config/constants'
+import { PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDT } from 'config/constants'
 import { Button, Slider } from 'uikit'
 import Earn from 'assets/svg/earn.svg'
 import distribution from 'assets/svg/distribution.svg'
@@ -334,9 +334,9 @@ const ReturnsInfoText = styled.div`
 `
 
 const Theter: React.FC = () => {
-  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, getUSDT2Addres())
+  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDT)
   const { t } = useTranslation()
-  
+
   const targeAmount = 650000 - getBalanceNumber(liquidity, 6)
   const maxAmount = 750000
   const progress = (getBalanceNumber(liquidity, 6) / 650000) * 100
@@ -424,7 +424,7 @@ const Theter: React.FC = () => {
                 <Button
                   type="button"
                   as={Link}
-                  to="/add/0xc83D8B4Bdb51aEc0559DA8bF6dB63bc1fa2b5Ab2"
+                  to={`/add/${getUSDT2Addres()}/${PROJECT_USDT}`}
                 >
                 {t('Invest')}
                 </Button>

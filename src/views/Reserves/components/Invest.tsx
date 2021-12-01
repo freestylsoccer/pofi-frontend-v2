@@ -7,6 +7,7 @@ import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
 import { useGasPrice } from 'state/user/hooks'
 import { useCurrency } from 'hooks/Tokens'
+import useTokenMint from 'hooks/useTokenMint'
 import { useMintState, useDerivedMintInfo, useMintActionHandlers } from 'state/mint/hooks'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getBalanceNumber } from 'utils/formatBalance'
@@ -15,7 +16,7 @@ import { Field } from 'state/mint/actions'
 import { ApprovalState, useApproveCallback } from 'hooks/useApproveCallback'
 import { useTransactionAdder, useIsTransactionPending } from 'state/transactions/hooks'
 import { LENDING_POOL_ADDRESS } from 'config/constants'
-import { calculateGasMargin, getRouterContractv2 } from 'utils'
+import { calculateGasMargin, getMintableContract, getRouterContractv2 } from 'utils'
 import CurrencyInputPanel from 'components/CurrencyInputPanelv2'
 import Dots from 'components/Loader/Dots'
 import ConnectWalletButton from 'components/ConnectWalletButton'
@@ -145,7 +146,8 @@ history,
   const [amountLimits, setAmountLimits] = useState<number>(0)
 
   const currencyA = useCurrency(currencyIdA)  
-  const currencyB = useCurrency(currencyIdB)
+  const currencyB = undefined
+  const project = currencyIdB
 
   const defaultAmountParsed = tryParseAmount("1", currencyA)
 
@@ -214,9 +216,7 @@ history,
   const defaultApproval = useApproveCallback(defaultAmountParsed, LENDING_POOL_ADDRESS)
 
   const addTransaction = useTransactionAdder()
-  const rtr = getRouterContractv2(chainId, library, account)
-  // console.log(rtr)
-  
+    
   async function onAdd() {
     if (!chainId || !library || !account) return
     const router = getRouterContractv2(chainId, library, account)
@@ -270,6 +270,49 @@ history,
     setAttemptingTxn(true)
     setCdTxHash("dsfsdfjshdf")
     setAttemptingTxn(false)
+  }
+
+  async function onFaucet () {
+    if (!chainId || !library || !account) return
+    const contract = getMintableContract(currencyIdA, chainId, library, account)
+
+    console.log(contract);
+
+    const estimate = contract.estimateGas.mint
+    const method = contract.mint
+
+    const args = [
+      "10000000000000000000000",
+    ]
+    const value = null
+
+    setAttemptingTxn(true)
+
+    await estimate(...args, value ? { value } : {})
+      .then((estimatedGasLimit) =>
+        method(...args, {
+          ...(value ? { value } : {}),
+          gasLimit: calculateGasMargin(estimatedGasLimit),
+          gasPrice,
+        }).then((response) => {
+          setAttemptingTxn(false)
+
+          addTransaction(response, {
+            summary: `Mint 10,000 ${
+              currencies[Field.CURRENCY_A]?.symbol
+            }`,
+          })
+
+          setTxHash(response.hash)
+        }),
+      )
+      .catch((err) => {
+        setAttemptingTxn(false)
+        // we only care if the error is something _other_ than the user rejected the tx
+        if (err?.code !== 4001) {
+          console.error(err)
+        }
+      })
   }
 
   let isPending = useIsTransactionPending(txHash)
@@ -328,8 +371,7 @@ history,
   if(fetchStatus !== "success"  && currencyA === null) {
     <PageLoader />
   }
-  console.log(txHash)
-  console.log(cdTxHash)
+  // anchor tonight bless traffic seminar fortune best bridge west buyer planet vital
   return (
       <BodyWrapper>
       {account && fetchStatus === "success" && currencyA !== null && getBalanceNumber(balance, currencyA.decimals) < 1 ? (
@@ -341,18 +383,134 @@ history,
               </Button>
             </div>
           </div>
+          {/*
           <div className="row">
             <div className="col">
               <div className="basic-form">
                 <div className="caption">
                   <StepTitle>{t('Your balance is zero')}</StepTitle>
-                  <p className="mt-3">
+                    <p className="mt-3">
                     {t('Your balance of %name% is 0. Transfer %name% to your wallet to be able to deposit' , { name: currencyA.name })}
-                  </p>
+                    </p>                 
                 </div>
               </div>
             </div>
           </div>
+          */}
+          <div className="confirmation-view">
+              <div className="caption">
+                <StepTitle>
+                  {t('Faucet %name%' , { name: currencyA.name })}
+                </StepTitle>
+                <p className="mt-3">These are your transaction details. Make sure to check if this is correct before submitting.</p>
+              </div>
+              <div className="confirmation-view-content-inner">
+                <ConfirmationHeader>
+                  <div className="row-amount-field">
+                    <div className="row-title-inner">
+                      <div className="row-title">Currency to faucet</div>
+                    </div>
+                    <div className="row-content">
+                      <div className="content-value">
+                        <div className="content-value-line">
+                          <div className="token-icon">
+                            <CurrencyLogo currency={currencyA} size="16px" />
+                          </div>
+                          <p className="value">
+                            10,000
+                            <span className="symbol">{currencyA.name}</span>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ConfirmationHeader>
+              </div>              
+                <div className="conformation-view-actions-inner">
+                  <HeaderCardsWrapper>
+                    <div className="action-wrapper-buttons">
+                      {isPending || attemptingTxn ? (
+                        <>
+                          <HeaderCardLoading>
+                            <p>{t('Loading')}</p>
+                          </HeaderCardLoading>
+                          <HeaderCardLoading>
+                            <p>{t('Loading')}</p>
+                          </HeaderCardLoading>
+                        </>
+                      ) : cdTxHash === '' && txHash === ''  ? (
+                        <>
+                          <HeaderCardActive>
+                            <p>{t('Faucet')}</p>
+                          </HeaderCardActive>
+                          <HeaderCardDisabled>
+                            <p>{t('Finished')}</p>
+                          </HeaderCardDisabled>
+                        </>
+                      ) : txHash === '' && cdTxHash !== '' ? (
+                        <>
+                          <HeaderCardFinished>
+                            <p>{t('Faucet')}</p>
+                          </HeaderCardFinished>
+                          <HeaderCardDisabled>
+                            <p>{t('Finished')}</p>
+                          </HeaderCardDisabled>
+                        </>
+                      ) : (
+                        <>
+                          <HeaderCardFinished>
+                            <p>{t('Faucet')}</p>
+                          </HeaderCardFinished>
+                          <HeaderCardFinished>
+                            <p>{t('Finished')}</p>
+                          </HeaderCardFinished>
+                        </>
+                      )}                      
+                    </div>
+                  </HeaderCardsWrapper>
+                </div>
+                <ConfirmationBody>
+                  <div className="txtop-info">
+                    <div className="txtop-info-inner">
+                      <div className="txtop-info-left-inner">
+                        {isPending || attemptingTxn ? (
+                          <>
+                            <Dots>{t('Loading')}</Dots>
+                          </>
+                        ) : cdTxHash === '' && txHash === ''  ? (
+                          <span>{t('Faucet')}</span>
+                        ) : (
+                          <span>{t('Success')}</span>
+                        )}
+                      </div>
+                      <div className="txtop-info-right-inner">
+                        <div className="txtop-info-button-inner">                          
+                            {isPending || attemptingTxn ? (
+                              <Button
+                                width='100%'
+                                type="button"
+                                disabled={isPending || attemptingTxn}
+                              >
+                                <Dots>{t('Loading')}</Dots>
+                              </Button>
+                            ) : (
+                              <Button
+                                width='100%'
+                                type="button"
+                                onClick={() => {
+                                  onFaucet()
+                                }}
+                                disabled={attemptingTxn}
+                              >
+                                {t('Faucet')}
+                              </Button>
+                            )}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </ConfirmationBody>
+            </div>
         </Container>
       ) : !showInvestOverview && account  && currencyA !== null && fetchStatus === "success" ? (
         <Container>
