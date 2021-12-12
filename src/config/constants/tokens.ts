@@ -26,7 +26,7 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xb85E76C7477Bd9e4cDCFEE11cbd477D10a375634',
+    '0x62A910c31D02B55186BCc2B5344B9A524e9608B0',
     18,
     'BUSD',
     'Binance USD',
@@ -46,7 +46,7 @@ export const DAI : { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0x55703f991206F97B7aB4f5b81A89FA8857f2f69A',
+    '0x7298535D2797Da6B5e16F04b9FDdF7422D086C8c',
     18,
     'DAI',
     'Dai Stablecoin'
@@ -62,7 +62,7 @@ export const USDT : { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xa2C103d6733799DfB169E150A2FC4307CB61848A',
+    '0xe81B0D965524da997d0c859eCFAb9D43D848dA02',
     6,
     'USDT',
     'Tether USD'
@@ -93,7 +93,7 @@ export const USDC : { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0x4a97f1e5cC2752E521C15CDEAf3e59045f50cD69',
+    '0x7E8fadd67369BB7B085624847F6756aD0346aa4b',
     18,
     'USDC',
     'Binance-Peg USD Coin',
@@ -109,7 +109,7 @@ export const TUSD : { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0x38267B4B0709aB1110af87fC964e276D39f4d626',
+    '0xE35282d31014C1534EbB4689D7596AaF2CEB8f3D',
     18,
     'TUSD',
     'True USD',
@@ -125,7 +125,7 @@ export const SUSD : { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0x44352E3FC21659010fd584fF7A6d7Af52C9c6B35',
+    '0x1a3970977129A6713AfCd60596fCb5dACCDb0abD',
     18,
     'sUSD',
     'Synth sUSD',
@@ -924,7 +924,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '0xb85E76C7477Bd9e4cDCFEE11cbd477D10a375634',
+      97: '0x62A910c31D02B55186BCc2B5344B9A524e9608B0',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
@@ -996,7 +996,7 @@ const tokens = {
     symbol: 'USDC',
     address: {
       56: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
-      97: '0x4a97f1e5cC2752E521C15CDEAf3e59045f50cD69',
+      97: '0x7E8fadd67369BB7B085624847F6756aD0346aa4b',
     },
     decimals: 18,
     projectLink: 'https://www.centre.io/usdc',
@@ -1005,7 +1005,7 @@ const tokens = {
     symbol: 'DAI',
     address: {
       56: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
-      97: '0x55703f991206F97B7aB4f5b81A89FA8857f2f69A',
+      97: '0x7298535D2797Da6B5e16F04b9FDdF7422D086C8c',
     },
     decimals: 18,
     projectLink: 'https://www.makerdao.com/',
@@ -1059,7 +1059,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '0x55d398326f99059fF775485246999027B3197955',
-      97: '0xa2C103d6733799DfB169E150A2FC4307CB61848A',
+      97: '0xe81B0D965524da997d0c859eCFAb9D43D848dA02',
     },
     decimals: 18,
     projectLink: 'https://tether.to/',
@@ -1068,7 +1068,7 @@ const tokens = {
     symbol: 'sUSD',
     address: {
       56: '0xF8888f86b15b40f432D0Ae1Ac4432C48cD67b49f',
-      97: '0x44352E3FC21659010fd584fF7A6d7Af52C9c6B35',
+      97: '0x1a3970977129A6713AfCd60596fCb5dACCDb0abD',
     },
     decimals: 18,
     projectLink: 'https://synthetix.io/',
@@ -1788,7 +1788,7 @@ const tokens = {
     symbol: 'TUSD',
     address: {
       56: '0x14016E85a25aeb13065688cAFB43044C2ef86784',
-      97: '0x38267B4B0709aB1110af87fC964e276D39f4d626',
+      97: '0xE35282d31014C1534EbB4689D7596AaF2CEB8f3D',
     },
     decimals: 18,
     projectLink: 'https://www.trueusd.com/',
@@ -2004,7 +2004,7 @@ const tokens = {
     symbol: 'USDT',
     address: {
       56: '',
-      97: '0xa2C103d6733799DfB169E150A2FC4307CB61848A',
+      97: '0xe81B0D965524da997d0c859eCFAb9D43D848dA02',
     },
     decimals: 6,
     projectLink: 'http://localhost:3000/',

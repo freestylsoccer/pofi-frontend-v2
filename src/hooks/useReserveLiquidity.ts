@@ -8,14 +8,17 @@ type UseReserveLiquidity = {
   liquidity: BigNumber
   fetchStatus: FetchStatus
 }
-
+type UseUserReserveLiquidity = {
+  aTokenBalance: BigNumber
+  balanceFetchStatus: FetchStatus
+}
 export enum FetchStatus {
   NOT_FETCHED = 'not-fetched',
   SUCCESS = 'success',
   FAILED = 'failed',
 }
 
-const useReserveLiquidity = (dataProviderAddress: string, reserve: string) => {
+export const useReserveLiquidity = (dataProviderAddress: string, reserve: string) => {
   const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
   const [liquidityState, setLiquidityState] = useState<UseReserveLiquidity>({
     liquidity: BIG_ZERO,
@@ -45,5 +48,34 @@ const useReserveLiquidity = (dataProviderAddress: string, reserve: string) => {
 
   return liquidityState
 }
+export const useReserveUserDeposited = (dataProviderAddress: string, reserve: string, user: string) => {
+  const { NOT_FETCHED, SUCCESS, FAILED } = FetchStatus
+  const [depositedBalance, setDepositedBalanceState] = useState<UseUserReserveLiquidity>({
+    aTokenBalance: BIG_ZERO,
+    balanceFetchStatus: NOT_FETCHED,
+  })  
+  const { fastRefresh } = useRefresh()
 
-export default useReserveLiquidity
+  useEffect(() => {
+    const fetchBalance = async () => {
+      const contract = getProtocolDataProvider(dataProviderAddress)
+      try {
+        const res = await contract.getUserReserveData(reserve, user)
+        setDepositedBalanceState({ aTokenBalance: new BigNumber(res.currentATokenBalance.toString()), balanceFetchStatus: SUCCESS })
+      } catch (e) {
+        console.error(e)
+        setDepositedBalanceState((prev) => ({
+          ...prev,
+          fetchStatus: FAILED,
+        }))
+      }
+    }
+
+    if (reserve) {
+      fetchBalance()
+    }
+  }, [reserve, dataProviderAddress, user, fastRefresh, SUCCESS, FAILED])
+
+  return depositedBalance
+}
+

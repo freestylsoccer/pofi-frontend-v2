@@ -3,8 +3,9 @@ import styled from 'styled-components/macro'
 import { MapPin, FileText } from 'react-feather'
 import SimpleReactLightbox from 'simple-react-lightbox'
 import { Link } from 'react-router-dom'
+import useActiveWeb3React from 'hooks/useActiveWeb3React'
 import { useTranslation } from 'contexts/Localization'
-import useReserveLiquidity from 'hooks/useReserveLiquidity'
+import {useReserveLiquidity, useReserveUserDeposited} from 'hooks/useReserveLiquidity'
 import { getUSDT2Addres } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
 import { PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDT } from 'config/constants'
@@ -273,10 +274,24 @@ const ReturnsInfoText = styled.div`
   margin-top: 1.5rem !important;
   color: ${({ theme }) => theme.colors.text3};
 `
+const NormalTextSpanIII = styled.span`
+  padding-right: .25rem;
+  font-size: 1rem;
+  color: #fff;
+  @media screen and (min-width: 60em) {
+    font-weight: 300;
+    font-size: 1.375rem;
+  }
+`
 
 const Theter: React.FC = () => {
+  const { account } = useActiveWeb3React()
   const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDT)
   const { t } = useTranslation()
+
+  const decimals = 6;
+  const projectTotalDeposited = getBalanceNumber(liquidity, decimals);
+  const { aTokenBalance, balanceFetchStatus } = useReserveUserDeposited(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDT, account)
 
   const targeAmount = 650000 - getBalanceNumber(liquidity, 6)
   const maxAmount = 750000
@@ -311,6 +326,16 @@ const Theter: React.FC = () => {
                   <SimpleReactLightbox>
                     <MyComponent elements={elements}/>
                   </SimpleReactLightbox>
+                </div>
+              </div>
+              <div>
+                <div className="pb-3">
+                  <Subtitle>Total Deposited</Subtitle>
+                  <Title>${`${projectTotalDeposited.toLocaleString('en-US')} USDT`}</Title>
+                  <NormalText>
+                    <NormalTextSpanIII>You have deposited: </NormalTextSpanIII>
+                    <NormalTextSpanIII>${`${getBalanceNumber(aTokenBalance, decimals).toLocaleString('en-US')} USDT`}</NormalTextSpanIII>
+                  </NormalText>
                 </div>
               </div>
             </div>
