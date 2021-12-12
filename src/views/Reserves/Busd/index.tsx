@@ -5,9 +5,9 @@ import SimpleReactLightbox from 'simple-react-lightbox'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useReserveLiquidity from 'hooks/useReserveLiquidity'
-import { getTusdAddress } from 'utils/addressHelpers'
+import { getBusdAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_TUSD } from 'config/constants'
+import { PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_BUSD } from 'config/constants'
 import { Button, Slider } from 'uikit'
 import Earn from 'assets/svg/earn.svg'
 import distribution from 'assets/svg/distribution.svg'
@@ -18,7 +18,7 @@ import MyComponent from '../components/MyComponent'
 
 const elements = [
   {
-    src: 'https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80',
+    src: 'https://images.unsplash.com/photo-1580587771525-78b9dba3b914?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=967&q=80',
     caption: 'Lorem ipsum dolor sit amet',
     height: 'auto',
   },
@@ -274,11 +274,11 @@ const ReturnsInfoText = styled.div`
   color: ${({ theme }) => theme.colors.text3};
 `
 
-const TrueUsd: React.FC = () => {
-  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_TUSD)
+const Theter: React.FC = () => {
+  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_BUSD)
   const { t } = useTranslation()
-  
-  const targeAmount = 650000 - getBalanceNumber(liquidity, 18)
+
+  const targeAmount = 650000 - getBalanceNumber(liquidity, 6)
   const maxAmount = 750000
   const progress = (getBalanceNumber(liquidity, 6) / 650000) * 100
   const [amount, setAmount] = useState(100)
@@ -294,7 +294,7 @@ const TrueUsd: React.FC = () => {
   return(
     <>
       <section className="reserve">
-        <div className="cover-tusd">
+        <div className="cover">
           <div className="bg-reserve">
             <div className="container content-end">
               <div className="col-xl-5 col-lg-6">
@@ -365,7 +365,7 @@ const TrueUsd: React.FC = () => {
                 <Button
                   type="button"
                   as={Link}
-                  to={`/add/${getTusdAddress()}/${PROJECT_TUSD}`}
+                  to={`/add/${getBusdAddress()}/${PROJECT_BUSD}`}
                 >
                 {t('Invest')}
                 </Button>
@@ -558,4 +558,4 @@ const TrueUsd: React.FC = () => {
     </>
   )
 }
-export default TrueUsd
+export default Theter

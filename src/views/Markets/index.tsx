@@ -8,6 +8,7 @@ import Dai from '../../assets/svg/dai-icon.svg'
 import Busd from '../../assets/svg/busd-icon.svg'
 import Tusd from '../../assets/svg/tusd-icon.svg'
 import Usdc from '../../assets/svg/usd-coin-usdc-logo.svg'
+import Susd from '../../assets/svg/SUSD-icon.svg'
 
 const BodyWrapper = styled.div`
   display: flex;
@@ -472,7 +473,9 @@ export default function Markets() {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/busd">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>
@@ -542,7 +545,9 @@ export default function Markets() {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/dai">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>
@@ -612,7 +617,9 @@ export default function Markets() {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/usdc">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>
@@ -621,7 +628,7 @@ export default function Markets() {
               <SectionVCard>
                 <CardHeader>
                   <CardIcon>
-                    <img width="100%" src={Busd} alt="busd" />
+                    <img width="100%" src={Susd} alt="busd" />
                   </CardIcon>
                   <CardTitleSection>
                     <CardTitle>
@@ -682,7 +689,9 @@ export default function Markets() {
                   </div>
                   <div className="cWyFIK"/>
                   <div className="eBIylG">
-                    <Button type="button" scale="md" >{t('View Details')}</Button>
+                    <Link href="/susd">
+                      <Button type="button" scale="md">{t('View Details')}</Button>
+                    </Link>
                   </div>
                 </div>
               </SectionVCard>

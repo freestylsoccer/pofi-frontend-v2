@@ -26,7 +26,7 @@ export const BUSD: { [chainId: number]: Token } = {
   ),
   [ChainId.TESTNET]: new Token(
     ChainId.TESTNET,
-    '0xeD24FC36d5Ee211Ea25A80239Fb8C4Cfd80f12Ee',
+    '0xb85E76C7477Bd9e4cDCFEE11cbd477D10a375634',
     18,
     'BUSD',
     'Binance USD',
@@ -34,7 +34,24 @@ export const BUSD: { [chainId: number]: Token } = {
 }
 
 export const WBNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'WBNB', 'Wrapped BNB')
-export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
+// export const DAI = new Token(ChainId.MAINNET, '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3', 18, 'DAI', 'Dai Stablecoin')
+
+export const DAI : { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET, 
+    '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
+    18,
+    'DAI',
+    'Dai Stablecoin'
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0x55703f991206F97B7aB4f5b81A89FA8857f2f69A',
+    18,
+    'DAI',
+    'Dai Stablecoin'
+  ),
+}
 export const USDT : { [chainId: number]: Token } = {
   [ChainId.MAINNET]: new Token(
     ChainId.MAINNET, 
@@ -66,20 +83,54 @@ export const ETH = new Token(
   'ETH',
   'Binance-Peg Ethereum Token',
 )
-export const USDC = new Token(
-  ChainId.MAINNET,
-  '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
-  18,
-  'USDC',
-  'Binance-Peg USD Coin',
-)
-export const TUSD = new Token(
-  ChainId.TESTNET,
-  '0x8Fc70e05A0071Bbca3020366182162a319418ECa',
-  18,
-  'TUSD',
-  'True USD',
-)
+export const USDC : { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET, 
+    '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
+    18,
+    'USDC',
+    'Binance-Peg USD Coin',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0x4a97f1e5cC2752E521C15CDEAf3e59045f50cD69',
+    18,
+    'USDC',
+    'Binance-Peg USD Coin',
+  ),
+}
+export const TUSD : { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET, 
+    '0x8Fc70e05A0071Bbca3020366182162a319418ECa',
+    18,
+    'TUSD',
+    'True USD',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0x38267B4B0709aB1110af87fC964e276D39f4d626',
+    18,
+    'TUSD',
+    'True USD',
+  ),
+}
+export const SUSD : { [chainId: number]: Token } = {
+  [ChainId.MAINNET]: new Token(
+    ChainId.MAINNET, 
+    '0xF8888f86b15b40f432D0Ae1Ac4432C48cD67b49f',
+    18,
+    'sUSD',
+    'Synth sUSD',
+  ),
+  [ChainId.TESTNET]: new Token(
+    ChainId.TESTNET,
+    '0x44352E3FC21659010fd584fF7A6d7Af52C9c6B35',
+    18,
+    'sUSD',
+    'Synth sUSD',
+  ),
+}
 
 const tokens = {
   bnb: {
@@ -873,7 +924,7 @@ const tokens = {
     symbol: 'BUSD',
     address: {
       56: '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56',
-      97: '',
+      97: '0xb85E76C7477Bd9e4cDCFEE11cbd477D10a375634',
     },
     decimals: 18,
     projectLink: 'https://www.paxos.com/busd/',
@@ -945,7 +996,7 @@ const tokens = {
     symbol: 'USDC',
     address: {
       56: '0x8AC76a51cc950d9822D68b83fE1Ad97B32Cd580d',
-      97: '',
+      97: '0x4a97f1e5cC2752E521C15CDEAf3e59045f50cD69',
     },
     decimals: 18,
     projectLink: 'https://www.centre.io/usdc',
@@ -954,7 +1005,7 @@ const tokens = {
     symbol: 'DAI',
     address: {
       56: '0x1AF3F329e8BE154074D8769D1FFa4eE058B1DBc3',
-      97: '',
+      97: '0x55703f991206F97B7aB4f5b81A89FA8857f2f69A',
     },
     decimals: 18,
     projectLink: 'https://www.makerdao.com/',
@@ -1012,6 +1063,15 @@ const tokens = {
     },
     decimals: 18,
     projectLink: 'https://tether.to/',
+  },
+  susd: {
+    symbol: 'sUSD',
+    address: {
+      56: '0xF8888f86b15b40f432D0Ae1Ac4432C48cD67b49f',
+      97: '0x44352E3FC21659010fd584fF7A6d7Af52C9c6B35',
+    },
+    decimals: 18,
+    projectLink: 'https://synthetix.io/',
   },
   btcb: {
     symbol: 'BTCB',
@@ -1728,7 +1788,7 @@ const tokens = {
     symbol: 'TUSD',
     address: {
       56: '0x14016E85a25aeb13065688cAFB43044C2ef86784',
-      97: '0x8Fc70e05A0071Bbca3020366182162a319418ECa',
+      97: '0x38267B4B0709aB1110af87fC964e276D39f4d626',
     },
     decimals: 18,
     projectLink: 'https://www.trueusd.com/',

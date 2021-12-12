@@ -5,9 +5,9 @@ import SimpleReactLightbox from 'simple-react-lightbox'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'contexts/Localization'
 import useReserveLiquidity from 'hooks/useReserveLiquidity'
-import { getTusdAddress } from 'utils/addressHelpers'
+import { getUsdcAddress } from 'utils/addressHelpers'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_TUSD } from 'config/constants'
+import { PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDC } from 'config/constants'
 import { Button, Slider } from 'uikit'
 import Earn from 'assets/svg/earn.svg'
 import distribution from 'assets/svg/distribution.svg'
@@ -275,7 +275,7 @@ const ReturnsInfoText = styled.div`
 `
 
 const TrueUsd: React.FC = () => {
-  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_TUSD)
+  const { liquidity, fetchStatus } = useReserveLiquidity(PROTOCOL_DATA_PROVIDER_ADDRESS, PROJECT_USDC)
   const { t } = useTranslation()
   
   const targeAmount = 650000 - getBalanceNumber(liquidity, 18)
@@ -365,7 +365,7 @@ const TrueUsd: React.FC = () => {
                 <Button
                   type="button"
                   as={Link}
-                  to={`/add/${getTusdAddress()}/${PROJECT_TUSD}`}
+                  to={`/add/${getUsdcAddress()}/${PROJECT_USDC}`}
                 >
                 {t('Invest')}
                 </Button>

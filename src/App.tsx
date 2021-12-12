@@ -20,6 +20,10 @@ const NotFound = lazy(() => import('./views/NotFound'))
 const Markets = lazy(() => import('./views/Markets'))
 const Theter = lazy(() => import('./views/Reserves/Theter'))
 const TrueUsd = lazy(() => import('./views/Reserves/TrueUsd'))
+const Busd = lazy(() => import('./views/Reserves/Busd'))
+const Dai = lazy(() => import('./views/Reserves/Dai'))
+const Usdc = lazy(() => import('./views/Reserves/Usdc'))
+const Susd = lazy(() => import('./views/Reserves/Susd'))
 const Invest = lazy(() => import('./views/Reserves/components/Invest'))
 
 // This config is required for number formatting
@@ -62,6 +66,18 @@ const App: React.FC = () => {
             </Route>
             <Route path="/trueusd" exact>
               <TrueUsd />
+            </Route>
+            <Route path="/busd" exact>
+              <Busd />
+            </Route>
+            <Route path="/dai" exact>
+              <Dai />
+            </Route>
+            <Route path="/usdc" exact>
+              <Usdc />
+            </Route>
+            <Route path="/susd" exact>
+              <Susd />
             </Route>
             <Route path="/markets" exact>
               <Markets />

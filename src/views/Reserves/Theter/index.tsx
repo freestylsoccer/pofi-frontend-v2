@@ -39,65 +39,6 @@ const elements = [
   }, 
 ]
 
-const Container = styled.div.attrs(() => ({
-  className: 'container',
-}))`
-  color: ${({ theme }) => theme.colors.text1};
-`
-const InfoTextPrimary = styled.span`
-  color: ${({ theme }) => theme.colors.text1};
-`
-const InfoTextSecondary = styled.p`
-  color: ${({ theme }) => theme.colors.text2};
-`
-const PackageTitle = styled.div`
-  padding: 0.5rem;
-  color: ${({ theme }) => theme.colors.text1};
-`
-const Price = styled.span`
-  font-size: 30px;
-  font-weight: 600;
-  color: ${({ theme }) => theme.colors.blue5};
-`
-const TextLeft = styled.div`
-  display: flex !important;
-  padding-left: 13px;
-  font-size: 16px;
-  font-weight: 400;
-  line-height: 28px;
-  margin: 0px;
-  text-align: left !important;
-  color: ${({ theme }) => theme.colors.text2};
-`
-const TextRight = styled.div`
-  text-align: right !important;
-  padding-right: 1rem !important;
-  color: ${({ theme }) => theme.colors.text1};
-`
-const Pricing = styled.div.attrs(() => ({
-  className: 'single-pricing active mt-30',
-}))`
-  background: ${({ theme }) => theme.colors.bg0};
-  border: solid 0.25px ${({ theme }) => theme.colors.text4};
-`
-const CardH3 = styled.h5`
-  color: ${({ theme }) => theme.colors.text2};
-`
-const CardSpan = styled.span`
-  color: ${({ theme }) => theme.colors.text3};
-`
-const AchievementsCard = styled.div.attrs(() => ({
-  className: 'card',
-}))`
-  background: ${({ theme }) => theme.colors.bg0};
-  color: ${({ theme }) => theme.colors.blue5};
-  :hover {
-    transform: scale(1.02);
-    transition: 0.5s;
-    background-color: #fff;
-    box-shadow: 0px 5px 50px -8px #ddd;
-  }
-`
 const Subtitle = styled.span`
   font-size: .75rem;
   text-transform: uppercase;

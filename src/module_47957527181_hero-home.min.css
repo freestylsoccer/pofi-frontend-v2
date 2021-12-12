@@ -1948,7 +1948,52 @@ font-size:24px
     box-sizing: content-box;
     transition: all 0s ease 0s;
 }
+@media screen and (min-width: 1024px) {
+  .sYJTM {
+    width: 100%;
+  }
+}
 
+@media screen and (min-width: 832px) {
+  .sYJTM {
+    width: 100%;
+  }
+}
+@media screen and (min-width: 640px) {
+  .sYJTM {
+    width: 90%;
+  }
+}
+@media screen and (min-width: 1024px) {
+  .sYJTM {
+    padding-left: 20px;
+  }
+}
+@media screen and (min-width: 832px) {
+  .sYJTM {
+    padding-left: 20px;
+  }
+}
+@media screen and (min-width: 640px) {
+  .sYJTM {
+    padding-left: 10px;
+  }
+}
+
+.sYJTM {
+  padding-left: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 90%;
+  flex-basis: 33%;
+  visibility: visible;
+  display: block;
+  opacity: 1;
+  z-index: auto;
+  overflow: visible;
+  box-sizing: content-box;
+  transition: all 0s ease 0s;
+}
 @media screen and (min-width: 1024px)
 {
 .gKEFyt {

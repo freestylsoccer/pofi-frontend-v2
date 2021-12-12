@@ -181,7 +181,7 @@ history,
   // modal and loading
   const [cdAttemptingTxn, setCdAttemptingTxn] = useState<boolean>(false) // clicked confirm
   
-  const [cdTxHash, setCdTxHash] = useState<string>('') // credit delegation transaciton hash
+  const [faucetTxHash, setFaucetTxHash] = useState<string>('') // credit delegation transaciton hash
 
   // get formatted amounts
   const formattedAmounts = {
@@ -268,7 +268,7 @@ history,
 
   async function onCreditDelegation() {
     setAttemptingTxn(true)
-    setCdTxHash("dsfsdfjshdf")
+    // setCdTxHash("dsfsdfjshdf")
     setAttemptingTxn(false)
   }
 
@@ -281,9 +281,9 @@ history,
 
     const amountToMint = 10000
     const exp = 10
-
+    const amt = amountToMint * (exp ** currencyA.decimals)
     const args = [
-      amountToMint * (exp ** currencyA.decimals),
+      amt.toString(),
     ]
     const value = null
 
@@ -304,7 +304,7 @@ history,
             }`,
           })
 
-          setTxHash(response.hash)
+          setFaucetTxHash(response.hash)
         }),
       )
       .catch((err) => {
@@ -439,7 +439,7 @@ history,
                             <p>{t('Loading')}</p>
                           </HeaderCardLoading>
                         </>
-                      ) : txHash === '' ? (
+                      ) : faucetTxHash === '' ? (
                         <>
                           <HeaderCardFinished>
                             <p>{t('Faucet')}</p>
@@ -469,7 +469,7 @@ history,
                           <>
                             <Dots>{t('Loading')}</Dots>
                           </>
-                        ) : txHash === ''  ? (
+                        ) : faucetTxHash === ''  ? (
                           <span>{t('Faucet')}</span>
                         ) : (
                           <span>{t('Success')}</span>
@@ -485,7 +485,7 @@ history,
                               >
                                 <Dots>{t('Loading')}</Dots>
                               </Button>
-                            ): txHash === '' ? (
+                            ): faucetTxHash === '' ? (
                               <Button
                                 width='100%'
                                 type="button"

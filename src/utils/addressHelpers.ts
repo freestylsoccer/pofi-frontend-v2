@@ -80,3 +80,19 @@ export const getAusdtAddress = () => {
 export const getTusdAddress = () => {
   return getAddress(tokens.tusd.address)
 }
+
+export const getDaiAddress = () => {
+  return getAddress(tokens.dai.address)
+}
+
+export const getUsdcAddress = () => {
+  return getAddress(tokens.usdc.address)
+}
+
+export const getSusdAddress = () => {
+  return getAddress(tokens.susd.address)
+}
+
+export const getBusdAddress = () => {
+  return getAddress(tokens.busd.address)
+}
